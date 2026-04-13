@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Expertise en automatisme industriel – Automates programmables, supervision SCADA, robotique et contrôle de processus pour l'industrie 4.0.">
+    <meta name="keywords" content="automatisme, PLC, automates Siemens, SCADA, robotique, supervision industrielle">
+    <meta name="theme-color" content="#3498db">
+    <title>Expertise Automatisme - Neguem Cheffo Daniel</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <button id="dark-mode-toggle" class="theme-btn" aria-label="Changer le thème (clair/sombre)"><i class="fas fa-moon"></i></button>
+
+    <header>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="expertise-reseaux.html">Réseaux</a></li>
+                <li><a href="expertise-electricite.html">Électricité & Domotique</a></li>
+                <li><a href="expertise-securite.html">Sécurité électronique</a></li>
+                <li><a href="expertise-automatisme.html" class="active">Automatisme</a></li>
+            </ul>
+        </nav>
+        <img src="ma photo de profil.jpg" alt="Daniel Neguem" class="profile-img" loading="lazy">
+        <h1>Expertise Automatisme Industriel</h1>
+        <p class="tagline">Automatisation des processus, supervision et robotique pour l'industrie 4.0.</p>
+    </header>
+
+    <div class="container">
+        <section>
+            <h2>Compétences clés</h2>
+            <div class="grid-skills">
+                <div class="card">
+                    <i class="fas fa-microchip"></i>
+                    <h3>Automates programmables (PLC)</h3>
+                    <p>Siemens S7, Schneider, programmation Ladder, SFC.</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                    <h3>Supervision (SCADA)</h3>
+                    <p>Interfaces homme-machine, WinCC, Vijeo Designer.</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-robot"></i>
+                    <h3>Robotique</h3>
+                    <p>Programmation de bras robotiques, cobots.</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Maintenance & optimisation</h3>
+                    <p>GMAO, analyses de pannes, amélioration continue.</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Projets réalisés</h2>
+            <div class="project-grid">
+                <div class="project-card" onclick="openModal('auto-projet1')">
+                    <div class="media-container">
+                        <img src="automate.jpg" alt="Automate Siemens" class="placeholder-img" loading="lazy">
+                    </div>
+                    <div class="project-info">
+                        <span class="date">2024</span>
+                        <h4>Automatisation ligne de production</h4>
+                        <p>Programmation d'un automate Siemens S7-1200 pour une ligne d'emballage.</p>
+                    </div>
+                </div>
+                <div class="project-card" onclick="openModal('auto-projet2')">
+                    <div class="media-container">
+                        <img src="scada.jpg" alt="Supervision" class="placeholder-img" loading="lazy">
+                    </div>
+                    <div class="project-info">
+                        <span class="date">2023</span>
+                        <h4>Mise en place d’un SCADA</h4>
+                        <p>Supervision à distance d’un atelier de production.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Certifications & formations</h2>
+            <div class="item">
+                <span class="date">2024</span>
+                <h4>Formation Siemens TIA Portal</h4>
+                <p class="desc">Programmation avancée des automates Siemens S7-1200/1500.</p>
+            </div>
+            <div class="item">
+                <span class="date">2023</span>
+                <h4>Certification Schneider Electric – Machine Expert</h4>
+                <p class="desc">Programmation des automates M221, M241.</p>
+            </div>
+        </section>
+    </div>
+
+    <!-- Modale -->
+    <div id="projectModal" class="modal" aria-hidden="true" role="dialog">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal()">&times;</button>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="contact-info">
+            <p><i class="fas fa-envelope"></i> <a href="mailto:dancheffo29@gmail.com">dancheffo29@gmail.com</a></p>
+            <p><i class="fas fa-phone"></i> <a href="tel:+237697654023">+237 697 654 023</a> | <a href="https://wa.me/237697654023" target="_blank" class="icon-wa"><i class="fab fa-whatsapp"></i> WhatsApp</a></p>
+            <p><a href="https://t.me/+237697654023" target="_blank" class="icon-tg"><i class="fab fa-telegram"></i> Telegram</a> | <a href="https://www.linkedin.com/in/daniel-cheffo-tech" target="_blank" class="icon-li"><i class="fab fa-linkedin"></i> LinkedIn</a></p>
+        </div>
+        <p class="copyright">&copy; 2026 - Neguem Cheffo Daniel</p>
+    </footer>
+    
+    <button id="backToTop" title="Retour en haut"><i class="fas fa-arrow-up"></i></button>
+    <script src="script.js" defer></script>
+</body>
+</html>

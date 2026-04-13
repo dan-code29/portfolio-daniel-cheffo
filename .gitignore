@@ -1,0 +1,24 @@
+# Dossiers système
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Node modules (si besoin futur)
+node_modules/
+package-lock.json
+
+# Fichiers temporaires
+*.tmp
+*.log
+*.swp
+*.swo
+*~
+
+# Fichiers de configuration personnels
+.env
+config.local.js
+
+# Dossiers de build
+dist/
+build/

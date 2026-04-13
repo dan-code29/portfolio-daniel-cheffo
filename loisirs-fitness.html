@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Mes loisirs - Fitness et sport - Maintien de la santé physique et mentale">
+    <meta name="keywords" content="fitness, sport, santé, bien-être, musculation">
+    <meta name="theme-color" content="#3498db">
+    <title>Loisirs - Fitness</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <button id="dark-mode-toggle" class="theme-btn" aria-label="Changer le thème (clair/sombre)">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <header>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="expertise-reseaux.html">Réseaux</a></li>
+                <li><a href="expertise-electricite.html">Électricité & Domotique</a></li>
+                <li><a href="expertise-securite.html">Sécurité électronique</a></li>
+                <li><a href="expertise-automatisme.html">Automatisme</a></li>
+            </ul>
+        </nav>
+        <img src="ma photo de profil.jpg" alt="Daniel Neguem" class="profile-img" loading="lazy">
+        <h1>Fitness & Sport</h1>
+        <p class="tagline">Maintien de la santé physique et mentale</p>
+    </header>
+
+    <div class="container">
+        <section>
+            <h2>Mon approche du fitness</h2>
+            <div class="hobby-description">
+                <p>Le sport est essentiel pour maintenir un équilibre entre vie professionnelle intense et bien-être personnel. Il m'aide à rester concentré et performant.</p>
+
+                <h3>Activités pratiquées :</h3>
+                <div class="genre-grid">
+                    <div class="genre-card">
+                        <i class="fas fa-dumbbell"></i>
+                        <h4>Musculation</h4>
+                        <p>Entraînements réguliers pour la force et la tonicité musculaire</p>
+                    </div>
+                    <div class="genre-card">
+                        <i class="fas fa-running"></i>
+                        <h4>Course à pied</h4>
+                        <p>Jogging matinal et courses de endurance pour la cardio</p>
+                    </div>
+                    <div class="genre-card">
+                        <i class="fas fa-swimmer"></i>
+                        <h4>Natation</h4>
+                        <p>Nage pour la détente musculaire et la récupération</p>
+                    </div>
+                    <div class="genre-card">
+                        <i class="fas fa-spa"></i>
+                        <h4>Yoga & méditation</h4>
+                        <p>Pratique pour la concentration et la gestion du stress</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Galerie photos</h2>
+            <div class="photo-carousel">
+                <div class="carousel-container">
+                    <div class="carousel-slide active">
+                        <img src="gym-workout.jpg" alt="Séance musculation" loading="lazy" onerror="this.src='fallback.jpg'">
+                        <div class="slide-caption">Séance d'entraînement en salle</div>
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="running-track.jpg" alt="Course à pied" loading="lazy" onerror="this.src='fallback.jpg'">
+                        <div class="slide-caption">Course matinale dans le parc</div>
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="swimming-pool.jpg" alt="Natation" loading="lazy" onerror="this.src='fallback.jpg'">
+                        <div class="slide-caption">Séance de natation relaxante</div>
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="yoga-session.jpg" alt="Yoga" loading="lazy" onerror="this.src='fallback.jpg'">
+                        <div class="slide-caption">Session de yoga et méditation</div>
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="fitness-goals.jpg" alt="Objectifs fitness" loading="lazy" onerror="this.src='fallback.jpg'">
+                        <div class="slide-caption">Suivi des progrès et objectifs atteints</div>
+                    </div>
+                </div>
+                <button class="carousel-prev" aria-label="Image précédente">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="carousel-next" aria-label="Image suivante">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+                <div class="carousel-indicators">
+                    <span class="indicator active" data-slide="0"></span>
+                    <span class="indicator" data-slide="1"></span>
+                    <span class="indicator" data-slide="2"></span>
+                    <span class="indicator" data-slide="3"></span>
+                    <span class="indicator" data-slide="4"></span>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="contact-info">
+            <p><i class="fas fa-envelope"></i> <a href="mailto:dancheffo29@gmail.com">dancheffo29@gmail.com</a></p>
+            <p><i class="fas fa-phone"></i> <a href="tel:+237697654023">+237 697 654 023</a> | <a href="https://wa.me/237697654023" target="_blank" class="icon-wa"><i class="fab fa-whatsapp"></i> WhatsApp</a></p>
+            <p><a href="https://t.me/+237697654023" target="_blank" class="icon-tg"><i class="fab fa-telegram"></i> Telegram</a> | <a href="https://www.linkedin.com/in/daniel-cheffo-tech" target="_blank" class="icon-li"><i class="fab fa-linkedin"></i> LinkedIn</a></p>
+        </div>
+        <p class="copyright">&copy; 2026 - Neguem Cheffo Daniel</p>
+    </footer>
+
+    <button id="backToTop" title="Retour en haut" aria-label="Retour en haut">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="script.js" defer></script>
+    <script>
+        // Carousel functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const slides = document.querySelectorAll('.carousel-slide');
+            const indicators = document.querySelectorAll('.indicator');
+            const prevBtn = document.querySelector('.carousel-prev');
+            const nextBtn = document.querySelector('.carousel-next');
+            let currentSlide = 0;
+
+            function showSlide(index) {
+                slides.forEach(slide => slide.classList.remove('active'));
+                indicators.forEach(indicator => indicator.classList.remove('active'));
+
+                slides[index].classList.add('active');
+                indicators[index].classList.add('active');
+                currentSlide = index;
+            }
+
+            function nextSlide() {
+                const nextIndex = (currentSlide + 1) % slides.length;
+                showSlide(nextIndex);
+            }
+
+            function prevSlide() {
+                const prevIndex = (currentSlide - 1 + slides.length) % slides.length;
+                showSlide(prevIndex);
+            }
+
+            // Event listeners
+            nextBtn.addEventListener('click', nextSlide);
+            prevBtn.addEventListener('click', prevSlide);
+
+            indicators.forEach((indicator, index) => {
+                indicator.addEventListener('click', () => showSlide(index));
+            });
+
+            // Auto-play
+            setInterval(nextSlide, 5000);
+        });
+    </script>
+</body>
+</html>

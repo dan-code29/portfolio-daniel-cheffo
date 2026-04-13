@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Expertise en électricité et domotique – Conception, installation, automatisation des bâtiments et solutions IoT pour maisons intelligentes.">
+    <meta name="keywords" content="électricité, domotique, KNX, Arduino, ESP32, Home Assistant">
+    <meta name="theme-color" content="#3498db">
+    <title>Expertise Électricité & Domotique - Neguem Cheffo Daniel</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <button id="dark-mode-toggle" class="theme-btn" aria-label="Changer le thème (clair/sombre)"><i class="fas fa-moon"></i></button>
+
+    <header>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="expertise-reseaux.html">Réseaux</a></li>
+                <li><a href="expertise-electricite.html" class="active">Électricité & Domotique</a></li>
+                <li><a href="expertise-securite.html">Sécurité électronique</a></li>
+                <li><a href="expertise-automatisme.html">Automatisme</a></li>
+            </ul>
+        </nav>
+        <img src="ma photo de profil.jpg" alt="Daniel Neguem" class="profile-img" loading="lazy">
+        <h1>Expertise Électricité & Domotique</h1>
+        <p class="tagline">Installations électriques, automatismes et systèmes domotiques pour un habitat intelligent.</p>
+    </header>
+
+    <div class="container">
+        <section>
+            <h2>Compétences clés</h2>
+            <div class="grid-skills">
+                <div class="card">
+                    <i class="fas fa-plug"></i>
+                    <h3>Installations électriques</h3>
+                    <p>Schémas électriques, normes NFC 15-100, tableau électrique.</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-home"></i>
+                    <h3>Domotique</h3>
+                    <p>KNX, Zigbee, Z-Wave, solutions ouvertes (Home Assistant).</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-microchip"></i>
+                    <h3>Automates & IoT</h3>
+                    <p>Programmation Arduino, ESP32, contrôle d'éclairage et volets.</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-charging-station"></i>
+                    <h3>Efficacité énergétique</h3>
+                    <p>Audit énergétique, solutions de gestion intelligente.</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-bolt"></i>
+                    <h3>Clôtures électriques</h3>
+                    <p>Installation et maintenance de systèmes de clôtures électriques de sécurité.</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-door-open"></i>
+                    <h3>Motorisation des portails</h3>
+                    <p>Automatisation des portails coulissants et battants avec contrôle à distance.</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Projets réalisés</h2>
+            <div class="project-grid">
+                <div class="project-card" onclick="openModal('elec-projet1')">
+                    <div class="media-container">
+                        <img src="domotique1.jpg" alt="Installation domotique" class="placeholder-img" loading="lazy">
+                    </div>
+                    <div class="project-info">
+                        <span class="date">2024</span>
+                        <h4>Maison connectée</h4>
+                        <p>Gestion centralisée de l'éclairage, chauffage et sécurité.</p>
+                    </div>
+                </div>
+                <div class="project-card" onclick="openModal('elec-projet2')">
+                    <div class="media-container">
+                        <img src="tableau-electrique.jpg" alt="Tableau électrique" class="placeholder-img" loading="lazy">
+                    </div>
+                    <div class="project-info">
+                        <span class="date">2023</span>
+                        <h4>Rénovation tableau électrique</h4>
+                        <p>Mise aux normes, ajout de protections différentielles.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Certifications & formations</h2>
+            <div class="item">
+                <span class="date">2024</span>
+                <h4>Formation KNX Basic</h4>
+                <p class="desc">Fondamentaux du bus KNX et programmation ETS.</p>
+            </div>
+            <div class="item">
+                <span class="date">2023</span>
+                <h4>Certification Legrand - Domotique</h4>
+                <p class="desc">Installation et configuration des solutions domotiques Legrand.</p>
+            </div>
+        </section>
+    </div>
+
+    <!-- Modale -->
+    <div id="projectModal" class="modal" aria-hidden="true" role="dialog">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal()">&times;</button>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="contact-info">
+            <p><i class="fas fa-envelope"></i> <a href="mailto:dancheffo29@gmail.com">dancheffo29@gmail.com</a></p>
+            <p><i class="fas fa-phone"></i> <a href="tel:+237697654023">+237 697 654 023</a> | <a href="https://wa.me/237697654023" target="_blank" class="icon-wa"><i class="fab fa-whatsapp"></i> WhatsApp</a></p>
+            <p><a href="https://t.me/+237697654023" target="_blank" class="icon-tg"><i class="fab fa-telegram"></i> Telegram</a> | <a href="https://www.linkedin.com/in/daniel-cheffo-tech" target="_blank" class="icon-li"><i class="fab fa-linkedin"></i> LinkedIn</a></p>
+        </div>
+        <p class="copyright">&copy; 2026 - Neguem Cheffo Daniel</p>
+    </footer> <!-- même footer que précédemment -->
+    <button id="backToTop" title="Retour en haut"><i class="fas fa-arrow-up"></i></button>
+    <script src="script.js" defer></script>
+</body>
+</html>
