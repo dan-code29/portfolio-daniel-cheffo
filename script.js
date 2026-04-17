@@ -12,27 +12,27 @@ const projectData = {
         title: "Installation Vidéosurveillance IP",
         text: "Mise en place de 20 caméras Hikvision, configuration du NVR, paramétrage du logiciel VMS et accès distant sécurisé.",
         media: [
-            { type: 'image', url: 'chantier1.jpg' },
-            { type: 'image', url: 'camera-posee.jpg' },
-            { type: 'video', url: 'test-nuit.mp4' }
+            { type: 'image', url: 'assets/images/chantier1.jpg' },
+            { type: 'image', url: 'assets/images/camera-posee.jpg' },
+            { type: 'video', url: 'assets/videos/test-nuit.mp4' }
         ]
     },
     'modal-p2': {
         title: "Câblage Baie de Brassage",
         text: "Identification de 150 points réseaux, passage de câbles Cat6a, brassage avec peignes et certification Fluke.",
         media: [
-            { type: 'image', url: 'baie-avant.jpg' },
-            { type: 'image', url: 'baie-apres.jpg' }
+            { type: 'image', url: 'assets/images/baie-avant.jpg' },
+            { type: 'image', url: 'assets/images/baie-apres.jpg' }
         ]
     },
     'modal-p3': {
         title: "Projet CYDEP & Management - Vaal University",
         text: "Leadership spirituel, formation en management des petites entreprises à Vaal University et vie communautaire.",
         media: [
-            { type: 'video', url: 'danielCYDP.mp4' },
-            { type: 'image', url: 'etude-biblique.jpg' },
-            { type: 'image', url: 'universite-vaal.jpg' },
-            { type: 'image', url: 'equipe-volontaires.jpg' }
+            { type: 'video', url: 'assets/videos/danielCYDP.mp4' },
+            { type: 'image', url: 'assets/images/etude-biblique.jpg' },
+            { type: 'image', url: 'assets/images/universite-vaal.jpg' },
+            { type: 'image', url: 'assets/images/equipe-volontaires.jpg' }
         ]
     }
 };
@@ -47,7 +47,7 @@ function openModal(projectId) {
         let mediaHTML = '<div class="modal-gallery">';
         data.media.forEach(item => {
             if (item.type === 'image') {
-                mediaHTML += `<img src="${item.url}" class="modal-media-item" alt="Photo du projet" onerror="this.src='fallback.jpg'">`;
+                mediaHTML += `<img src="${item.url}" class="modal-media-item" alt="Photo du projet" onerror="this.src='assets/images/fallback.jpg'">`;
             } else if (item.type === 'video') {
                 mediaHTML += `
                     <video controls class="modal-media-item">
@@ -230,29 +230,29 @@ function initModalEscape() {
 const galleryData = [
     {
         type: 'image',
-        url: 'images/projet1-grand.jpg',
-        thumbnail: 'images/projet1-petit.jpg',
+        url: 'assets/images/projet1-grand.jpg',
+        thumbnail: 'assets/images/projet1-petit.png',
         title: 'Installation caméras Hikvision',
         description: 'Mise en service d’un système de vidéosurveillance IP (20 caméras).'
     },
     {
         type: 'image',
-        url: 'images/projet2-grand.jpg',
-        thumbnail: 'images/projet2-petit.jpg',
+        url: 'assets/images/projet2-grand.jpg',
+        thumbnail: 'assets/images/projet2-petit.png',
         title: 'Baie de brassage Cat6a',
         description: 'Brassage et certification Fluke d’une baie réseau.'
     },
     {
         type: 'image',
-        url: 'images/projet3-grand.jpg',
-        thumbnail: 'images/projet3-petit.jpg',
-        title: 'CYDEP – Vaal University',
-        description: 'Cérémonie de remise des certificats.'
+        url: 'assets/images/cydpwork.jpg',
+        thumbnail: 'assets/images/cydpwork1.jpg',
+        title: 'CYDEP – workshoot',
+        description: 'CYDP WORKSHOOT Welding.'
     },
     {
         type: 'video',
-        url: 'videos/demo-reseau.mp4',
-        thumbnail: 'images/vignette-reseau.jpg',
+        url: 'assets/videos/demo-reseau.mp4',
+        thumbnail: 'assets/images/vignette-reseau.jpg',
         title: 'Démonstration réseau',
         description: 'Test de performance d’une infrastructure 10 Gb/s.'
     }
