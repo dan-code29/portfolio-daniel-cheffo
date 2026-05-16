@@ -1,12 +1,64 @@
 /**
- * PORTFOLIO DANIEL NEGUEM - SCRIPT GLOBAL AMÉLIORÉ
- * Version: 2.0 - Refactorisation modulaire
+ * PORTFOLIO DANIEL NEGUEM - SCRIPT GLOBAL
+ * Version: 3.0 - Unifiée et robuste
  */
 
-// Namespace global pour éviter la pollution du scope
+// ==================== NAMESPACE GLOBAL ====================
 window.Portfolio = window.Portfolio || {};
 
-// ==================== 1. DONNÉES PROJETS ====================
+// ==================== SYSTÈME DE TRADUCTION ====================
+let currentLanguage = localStorage.getItem('language') || 'fr';
+let translations = {};
+
+async function loadTranslations() {
+    try {
+        const response = await fetch('translations.json');
+        translations = await response.json();
+        applyTranslations();
+        updateLanguageButtonText();
+    } catch (error) {
+        console.warn('Traduction non disponible (fichier manquant ou erreur serveur)');
+        // Pas d'erreur bloquante – le site reste en français par défaut
+    }
+}
+
+function applyTranslations() {
+    const lang = translations[currentLanguage];
+    if (!lang) return;
+
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        const value = key.split('.').reduce((obj, k) => obj?.[k], lang);
+        if (value) el.textContent = value;
+    });
+
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        const key = el.getAttribute('data-i18n-placeholder');
+        const value = key.split('.').reduce((obj, k) => obj?.[k], lang);
+        if (value) el.placeholder = value;
+    });
+}
+
+function toggleLanguage() {
+    currentLanguage = currentLanguage === 'fr' ? 'en' : 'fr';
+    localStorage.setItem('language', currentLanguage);
+    applyTranslations();
+    updateLanguageButtonText();
+
+    // Redémarrer le typewriter avec les nouveaux mots
+    if (window.Portfolio.typewriterInterval) {
+        clearInterval(window.Portfolio.typewriterInterval);
+        window.Portfolio.typewriterInterval = null;
+    }
+    initTypewriter();
+}
+
+function updateLanguageButtonText() {
+    const btn = document.getElementById('lang-text');
+    if (btn) btn.textContent = currentLanguage === 'fr' ? 'EN' : 'FR';
+}
+
+// ==================== DONNÉES DES PROJETS (MODALES CLASSIQUES) ====================
 const projectData = {
     'modal-p1': {
         title: "Installation Vidéosurveillance IP",
@@ -37,7 +89,7 @@ const projectData = {
     }
 };
 
-// ==================== 2. MODALE (projets & diplômes) ====================
+// ==================== MODALE PRINCIPALE (projets & diplômes) ====================
 function openModal(projectId) {
     const modal = document.getElementById('projectModal');
     const body = document.getElementById('modal-body');
@@ -62,7 +114,7 @@ function openModal(projectId) {
             <div class="modal-body-content">
                 <h3 id="modal-title">${data.title}</h3>
                 <p class="modal-description">${data.text}</p>
-                <hr style="border:0; border-top:1px solid #eee; margin:20px 0;">
+                <hr>
                 <h4><i class="fas fa-images"></i> Galerie du projet :</h4>
                 ${mediaHTML}
             </div>
@@ -76,20 +128,14 @@ function openModal(projectId) {
     }
 }
 
-// Fonction toggle description diplôme
 function toggleDiplomaDescription(event, descId) {
     event.stopPropagation();
     const desc = document.getElementById(descId);
     if (desc) {
-        // Fermer toutes les autres descriptions
         document.querySelectorAll('.diploma-description.show').forEach(d => {
             if (d.id !== descId) d.classList.remove('show');
         });
-        
-        // Toggle celle-ci
         desc.classList.toggle('show');
-        
-        // Fermer si on clique en dehors
         if (desc.classList.contains('show')) {
             setTimeout(() => {
                 const closeOnClickOutside = (e) => {
@@ -104,36 +150,33 @@ function toggleDiplomaDescription(event, descId) {
     }
 }
 
-// Fonction originale closeModal (sauvegardée pour être utilisée dans l'override)
 const originalCloseModal = function() {
     const modal = document.getElementById('projectModal');
     if (modal) {
         modal.style.display = "none";
         modal.setAttribute('aria-hidden', 'true');
         document.body.style.overflow = "auto";
-    }
-};
-
-// On remplace closeModal par une version qui gère aussi la galerie
-window.closeModal = function() {
-    const modal = document.getElementById('projectModal');
-    if (modal) {
         modal.classList.remove('gallery-lightbox');
-        originalCloseModal();
     }
 };
 
-// ==================== 3. FONCTIONS D'ANIMATION & INTERACTIONS ====================
+window.closeModal = originalCloseModal;
+
+// ==================== ANIMATIONS & INTERACTIONS ====================
 function initTypewriter() {
     const textElement = document.getElementById('typewriter-text');
     if (!textElement) return;
 
-    const words = [
+    const words = currentLanguage === 'en' ? [
+        "Computer Networks",
+        "Electricity and Home Automation",
+        "Electronic Security"
+    ] : [
         "Réseaux Informatiques",
         "Électricité et Domotique",
-        "Sécurité Électronique",
-        "Automatisme Industriel"
+        "Sécurité Électronique"
     ];
+
     let wordIndex = 0, charIndex = 0, isDeleting = false;
     let typeSpeed = 100;
 
@@ -158,8 +201,10 @@ function initTypewriter() {
             typeSpeed = 500;
         }
 
-        setTimeout(type, typeSpeed);
+        window.Portfolio.typewriterInterval = setTimeout(type, typeSpeed);
     }
+
+    if (window.Portfolio.typewriterInterval) clearTimeout(window.Portfolio.typewriterInterval);
     type();
 }
 
@@ -187,8 +232,7 @@ function initDarkMode() {
 }
 
 function initHoverVideos() {
-    const projectCards = document.querySelectorAll('.project-card');
-    projectCards.forEach(card => {
+    document.querySelectorAll('.project-card').forEach(card => {
         const video = card.querySelector('.project-video');
         if (video) {
             card.addEventListener('mouseenter', () => {
@@ -204,18 +248,18 @@ function initHoverVideos() {
 }
 
 function initBackToTop() {
-    const backToTopBtn = document.getElementById("backToTop");
-    if (!backToTopBtn) return;
+    const btn = document.getElementById("backToTop");
+    if (!btn) return;
 
     window.addEventListener('scroll', () => {
         if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
-            backToTopBtn.classList.add("show");
+            btn.classList.add("show");
         } else {
-            backToTopBtn.classList.remove("show");
+            btn.classList.remove("show");
         }
     });
 
-    backToTopBtn.addEventListener("click", () => {
+    btn.addEventListener("click", () => {
         window.scrollTo({ top: 0, behavior: "smooth" });
     });
 }
@@ -226,7 +270,7 @@ function initModalEscape() {
     });
 }
 
-// ==================== 4. GALERIE PHOTO AVANCÉE ====================
+// ==================== GALERIE PHOTO (optionnelle) ====================
 const galleryData = [
     {
         type: 'image',
@@ -246,8 +290,8 @@ const galleryData = [
         type: 'image',
         url: 'assets/images/cydpwork.jpg',
         thumbnail: 'assets/images/cydpwork1.jpg',
-        title: 'CYDEP – workshoot',
-        description: 'CYDP WORKSHOOT Welding.'
+        title: 'CYDEP – Workshop',
+        description: 'CYDP WORKSHOP Welding.'
     },
     {
         type: 'video',
@@ -266,9 +310,8 @@ function buildGallery() {
     galleryData.forEach((item, index) => {
         const div = document.createElement('div');
         div.className = 'gallery-item';
-        div.setAttribute('data-index', index);
         div.innerHTML = `
-            <img src="${item.thumbnail}" class="gallery-thumb" alt="${item.title}">
+            <img src="${item.thumbnail}" class="gallery-thumb" alt="${item.title}" loading="lazy">
             <div class="gallery-caption">${item.title}</div>
         `;
         div.addEventListener('click', () => openLightbox(index));
@@ -280,15 +323,9 @@ let currentLightboxIndex = 0;
 
 function openLightbox(index) {
     const modal = document.getElementById('projectModal');
-    const body = document.getElementById('modal-body');
-    if (!modal || !body) {
-        console.error('Modal ou body non trouvé');
-        return;
-    }
-
-    Portfolio.lightbox = Portfolio.lightbox || {};
-    Portfolio.lightbox.currentIndex = index;
-    showLightboxItem(Portfolio.lightbox.currentIndex);
+    if (!modal) return;
+    currentLightboxIndex = index;
+    showLightboxItem(currentLightboxIndex);
     modal.classList.add('gallery-lightbox');
     modal.style.display = 'flex';
     modal.setAttribute('aria-hidden', 'false');
@@ -298,8 +335,9 @@ function openLightbox(index) {
 function showLightboxItem(index) {
     const item = galleryData[index];
     if (!item) return;
-
     const modalBody = document.getElementById('modal-body');
+    if (!modalBody) return;
+
     let mediaHTML = '';
     if (item.type === 'image') {
         mediaHTML = `<img src="${item.url}" class="lightbox-media" alt="${item.title}">`;
@@ -320,100 +358,164 @@ function showLightboxItem(index) {
                 ${item.description}
             </div>
             <div class="lightbox-nav">
-                <button class="prev-btn" aria-label="Précédent"><i class="fas fa-chevron-left"></i> Précédent</button>
-                <button class="next-btn" aria-label="Suivant">Suivant <i class="fas fa-chevron-right"></i></button>
+                <button class="prev-btn"><i class="fas fa-chevron-left"></i> Précédent</button>
+                <button class="next-btn">Suivant <i class="fas fa-chevron-right"></i></button>
             </div>
         </div>
     `;
 
     const prevBtn = modalBody.querySelector('.prev-btn');
     const nextBtn = modalBody.querySelector('.next-btn');
-    if (prevBtn) prevBtn.addEventListener('click', () => navigateLightbox(-1));
-    if (nextBtn) nextBtn.addEventListener('click', () => navigateLightbox(1));
+    if (prevBtn) prevBtn.onclick = () => navigateLightbox(-1);
+    if (nextBtn) nextBtn.onclick = () => navigateLightbox(1);
 }
 
 function navigateLightbox(delta) {
-    Portfolio.lightbox = Portfolio.lightbox || {};
-    let newIndex = (Portfolio.lightbox.currentIndex || 0) + delta;
+    let newIndex = currentLightboxIndex + delta;
     if (newIndex < 0) newIndex = galleryData.length - 1;
     if (newIndex >= galleryData.length) newIndex = 0;
-    Portfolio.lightbox.currentIndex = newIndex;
-    showLightboxItem(Portfolio.lightbox.currentIndex);
+    currentLightboxIndex = newIndex;
+    showLightboxItem(currentLightboxIndex);
 }
 
-// ==================== 5. INITIALISATION GLOBALE ====================
-document.addEventListener('DOMContentLoaded', () => {
-    try {
-        initTypewriter();
-        console.log('✓ Typewriter initialisé');
-    } catch (e) {
-        console.warn('Erreur typewriter:', e);
+// ==================== CARROUSEL PROJETS (expertises) ====================
+function initExpertiseCarousel() {
+    const container = document.querySelector('.projects-carousel-container');
+    if (!container) return;
+
+    const track = container.querySelector('.projects-carousel');
+    const slides = container.querySelectorAll('.carousel-project-slide');
+    const prevBtn = container.querySelector('.carousel-project-prev');
+    const nextBtn = container.querySelector('.carousel-project-next');
+    let indicators = container.querySelectorAll('.carousel-project-indicator');
+
+    if (!track || slides.length === 0) return;
+
+    // Créer les indicateurs s'ils n'existent pas
+    if (indicators.length === 0 && slides.length > 1) {
+        const indicatorsDiv = container.querySelector('.carousel-project-indicators') || (() => {
+            const div = document.createElement('div');
+            div.className = 'carousel-project-indicators';
+            container.appendChild(div);
+            return div;
+        })();
+        for (let i = 0; i < slides.length; i++) {
+            const dot = document.createElement('span');
+            dot.classList.add('carousel-project-indicator');
+            if (i === 0) dot.classList.add('active');
+            indicatorsDiv.appendChild(dot);
+        }
+        indicators = container.querySelectorAll('.carousel-project-indicator');
     }
 
-    try {
-        initDarkMode();
-        console.log('✓ Mode sombre initialisé');
-    } catch (e) {
-        console.warn('Erreur dark mode:', e);
-    }
+    let currentIndex = 0;
+    let autoInterval = null;
+    const delay = 6000;
 
-    try {
-        initHoverVideos();
-        console.log('✓ Hover vidéos initialisé');
-    } catch (e) {
-        console.warn('Erreur hover vidéos:', e);
-    }
+    function showSlide(index) {
+        // Gestion des limites
+        if (index >= slides.length) currentIndex = 0;
+        else if (index < 0) currentIndex = slides.length - 1;
+        else currentIndex = index;
 
-    try {
-        initBackToTop();
-        console.log('✓ Back to top initialisé');
-    } catch (e) {
-        console.warn('Erreur back to top:', e);
-    }
-
-    try {
-        initModalEscape();
-        console.log('✓ Modal escape initialisé');
-    } catch (e) {
-        console.warn('Erreur modal escape:', e);
-    }
-
-    try {
-        buildGallery();
-        console.log('✓ Galerie construite');
-    } catch (e) {
-        console.warn('Erreur galerie:', e);
-    }
-
-    // Fermeture modale par clic en dehors
-    const modal = document.getElementById('projectModal');
-    if (modal) {
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) closeModal();
+        slides.forEach((slide, i) => {
+            slide.classList.toggle('active', i === currentIndex);
+        });
+        indicators.forEach((ind, i) => {
+            ind.classList.toggle('active', i === currentIndex);
         });
     }
-    
-    console.log('✓ Portfolio initialisé avec succès');
-});
 
-// ==================== 6. FOND HIGH-TECH (CANVAS) ====================
+    function nextSlide() { showSlide(currentIndex + 1); }
+    function prevSlide() { showSlide(currentIndex - 1); }
+
+    function startAuto() {
+        if (autoInterval) clearInterval(autoInterval);
+        autoInterval = setInterval(nextSlide, delay);
+    }
+    function stopAuto() { if (autoInterval) clearInterval(autoInterval); }
+
+    if (prevBtn) prevBtn.addEventListener('click', () => { stopAuto(); prevSlide(); startAuto(); });
+    if (nextBtn) nextBtn.addEventListener('click', () => { stopAuto(); nextSlide(); startAuto(); });
+
+    indicators.forEach((ind, idx) => {
+        ind.addEventListener('click', () => { stopAuto(); showSlide(idx); startAuto(); });
+    });
+
+    container.addEventListener('mouseenter', stopAuto);
+    container.addEventListener('mouseleave', startAuto);
+
+    // Gestion vidéos au survol
+    slides.forEach(slide => {
+        const video = slide.querySelector('.carousel-project-video');
+        if (video) {
+            slide.addEventListener('mouseenter', () => {
+                video.load();
+                video.play().catch(() => {});
+            });
+            slide.addEventListener('mouseleave', () => {
+                video.pause();
+                video.currentTime = 0;
+            });
+        }
+    });
+
+    // Clic pour agrandir (lightbox simple)
+    slides.forEach(slide => {
+        const media = slide.querySelector('.carousel-project-media');
+        if (!media) return;
+        media.style.cursor = 'pointer';
+        media.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const img = slide.querySelector('.carousel-project-img');
+            const video = slide.querySelector('.carousel-project-video');
+            const title = slide.querySelector('h4')?.innerText || 'Projet';
+            const date = slide.querySelector('.carousel-project-date')?.innerText || '';
+            const desc = slide.querySelector('p')?.innerText || '';
+
+            let mediaHTML = '';
+            if (video && video.src) {
+                mediaHTML = `<video controls autoplay style="width:100%; max-height:70vh;"><source src="${video.src}" type="video/mp4">Vidéo non supportée</video>`;
+            } else if (img && img.src) {
+                mediaHTML = `<img src="${img.src}" style="width:100%; max-height:70vh; object-fit:contain;" alt="${title}">`;
+            }
+
+            const modalBody = document.getElementById('modal-body');
+            if (modalBody) {
+                modalBody.innerHTML = `
+                    <div style="text-align:center;">
+                        <h3>${title}</h3>
+                        <span style="color:var(--accent);">${date}</span>
+                        <p>${desc}</p>
+                        <hr>
+                        ${mediaHTML}
+                    </div>
+                `;
+                const modal = document.getElementById('projectModal');
+                if (modal) {
+                    modal.style.display = 'flex';
+                    document.body.style.overflow = 'hidden';
+                }
+            }
+        });
+    });
+
+    showSlide(0);
+    startAuto();
+}
+
+// ==================== FOND HIGH-TECH (CANVAS) ====================
 (function() {
     const canvas = document.getElementById('networkCanvas');
-    if (!canvas) {
-        console.error('Canvas #networkCanvas introuvable !');
-        return;
-    }
-    console.log('Canvas trouvé, démarrage du fond high-tech.');
+    if (!canvas) return;
 
     const ctx = canvas.getContext('2d');
     let width, height;
     let particles = [];
-    // Réduction du nombre de particules pour meilleure performance
     const PARTICLE_COUNT = 60;
     const CONNECTION_DISTANCE = 130;
     const MOUSE_RADIUS = 180;
     let mouseX = null, mouseY = null;
-    let animationRunning = true;
 
     function resizeCanvas() {
         width = canvas.width = window.innerWidth;
@@ -437,7 +539,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function draw() {
         if (!ctx) return;
         ctx.clearRect(0, 0, width, height);
-        
+
         // Connexions
         ctx.lineWidth = 1;
         for (let i = 0; i < particles.length; i++) {
@@ -495,24 +597,39 @@ document.addEventListener('DOMContentLoaded', () => {
         requestAnimationFrame(draw);
     }
 
-    function onMouseMove(e) {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-    }
-    function onMouseLeave() {
-        mouseX = null;
-        mouseY = null;
-    }
+    window.addEventListener('resize', resizeCanvas);
+    window.addEventListener('mousemove', (e) => { mouseX = e.clientX; mouseY = e.clientY; });
+    window.addEventListener('mouseleave', () => { mouseX = null; mouseY = null; });
 
-    try {
-        window.addEventListener('resize', resizeCanvas);
-        window.addEventListener('mousemove', onMouseMove);
-        window.addEventListener('mouseleave', onMouseLeave);
-
-        resizeCanvas();
-        draw();
-    } catch (error) {
-        console.error('Erreur lors de l\'initialisation du canvas:', error);
-        canvas.style.display = 'none';
-    }
+    resizeCanvas();
+    draw();
 })();
+
+// ==================== INITIALISATION UNIQUE ====================
+document.addEventListener('DOMContentLoaded', async () => {
+    // 1. Traductions (chargement asynchrone mais attendu)
+    await loadTranslations();
+
+    // 2. Compositions
+    initTypewriter();
+    initDarkMode();
+    initHoverVideos();
+    initBackToTop();
+    initModalEscape();
+    buildGallery();
+    initExpertiseCarousel();   // ← le carrousel pour les pages d'expertise (seulement si la structure existe)
+
+    // 3. Bouton de langue
+    const langBtn = document.getElementById('language-toggle');
+    if (langBtn) langBtn.addEventListener('click', toggleLanguage);
+
+    // 4. Fermeture modale par clic externe
+    const modal = document.getElementById('projectModal');
+    if (modal) {
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+    }
+
+    console.log('✅ Portfolio initialisé');
+});

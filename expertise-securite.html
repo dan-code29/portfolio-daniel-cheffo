@@ -11,7 +11,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
-    <button id="dark-mode-toggle" class="theme-btn" aria-label="Changer le thème (clair/sombre)"><i class="fas fa-moon"></i></button>
+    <button id="dark-mode-toggle" class="theme-btn" aria-label="Changer le thème (clair/sombre)">
+        <i class="fas fa-moon"></i>
+    </button>
 
     <header>
         <nav class="main-nav">
@@ -20,7 +22,6 @@
                 <li><a href="expertise-reseaux.html">Réseaux</a></li>
                 <li><a href="expertise-electricite.html">Électricité & Domotique</a></li>
                 <li><a href="expertise-securite.html" class="active">Sécurité électronique</a></li>
-                <li><a href="expertise-automatisme.html">Automatisme</a></li>
             </ul>
         </nav>
         <img src="assets/images/ma photo de profil.jpg" alt="Daniel Neguem" class="profile-img" loading="lazy">
@@ -29,6 +30,7 @@
     </header>
 
     <div class="container">
+        <!-- Compétences clés -->
         <section>
             <h2>Compétences clés</h2>
             <div class="grid-skills">
@@ -40,47 +42,73 @@
                 <div class="card">
                     <i class="fas fa-door-open"></i>
                     <h3>Contrôle d’accès</h3>
-                    <p>Badge, biométrie, interphonie, gestion centralisée.</p>
+                    <p>Badge, biométrie, interphonie, serrures connectées, gestion centralisée.</p>
                 </div>
                 <div class="card">
                     <i class="fas fa-bell"></i>
-                    <h3>Systèmes d’alarme</h3>
-                    <p>Détecteurs volumétriques, périmétriques, centrales communicantes.</p>
+                    <h3>Barrières de protection</h3>
+                    <p>Installation de barrières électriques, fils barbelés, alarmes périmétriques.</p>
                 </div>
                 <div class="card">
                     <i class="fas fa-network-wired"></i>
                     <h3>Intégration & supervision</h3>
-                    <p>Centralisation sur plateformes PSIM, supervision à distance.</p>
+                    <p>Centralisation sur plateformes, supervision à distance.</p>
                 </div>
             </div>
         </section>
 
+        <!-- Projets réalisés (CARROUSEL) -->
         <section>
             <h2>Projets réalisés</h2>
-            <div class="project-grid">
-                <div class="project-card" onclick="openModal('secu-projet1')">
-                    <div class="media-container">
-                        <img src="assets/images/camera-ip.jpg" alt="Vidéosurveillance" class="placeholder-img" loading="lazy">
+            <div class="projects-carousel-container">
+                <div class="projects-carousel">
+                    <!-- Slide 1 -->
+                    <div class="carousel-project-slide active">
+                        <div class="carousel-project-media">
+                            <img src="assets/images/camera-ip.jpg" alt="Vidéosurveillance Hikvision" class="carousel-project-img" loading="lazy">
+                            <!-- Si vous avez une vidéo, décommentez la balise video -->
+                            <!-- 
+                            <video class="carousel-project-video" muted loop preload="none">
+                                <source src="assets/videos/video-secu.mp4" type="video/mp4">
+                            </video>
+                            -->
+                        </div>
+                        <div class="carousel-project-info">
+                            <span class="carousel-project-date">2023</span>
+                            <h4>Installation vidéosurveillance Hikvision</h4>
+                            <p>20 caméras, NVR, accès mobile et stockage centralisé.</p>
+                        </div>
                     </div>
-                    <div class="project-info">
-                        <span class="date">2023</span>
-                        <h4>Installation vidéosurveillance Hikvision</h4>
-                        <p>20 caméras, NVR, accès mobile et stockage centralisé.</p>
+                    <!-- Slide 2 -->
+                    <div class="carousel-project-slide">
+                        <div class="carousel-project-media">
+                            <img src="assets/images/controle-acces.jpg" alt="Contrôle d'accès" class="carousel-project-img" loading="lazy">
+                        </div>
+                        <div class="carousel-project-info">
+                            <span class="carousel-project-date">2024</span>
+                            <h4>Contrôle d’accès badge + biométrie</h4>
+                            <p>Implantation dans un immeuble de bureaux.</p>
+                        </div>
+                    </div>
+                    <!-- Slide 3 (exemple supplémentaire) -->
+                    <div class="carousel-project-slide">
+                        <div class="carousel-project-media">
+                            <img src="assets/images/alarm-perimetre.jpg" alt="Alarme périmétrique" class="carousel-project-img" loading="lazy">
+                        </div>
+                        <div class="carousel-project-info">
+                            <span class="carousel-project-date">2025</span>
+                            <h4>Barrière électrique et détection périmétrique</h4>
+                            <p>Installation d’une clôture électrifiée et détecteurs infrarouges.</p>
+                        </div>
                     </div>
                 </div>
-                <div class="project-card" onclick="openModal('secu-projet2')">
-                    <div class="media-container">
-                        <img src="assets/images/controle-acces.jpg" alt="Contrôle d'accès" class="placeholder-img" loading="lazy">
-                    </div>
-                    <div class="project-info">
-                        <span class="date">2024</span>
-                        <h4>Contrôle d’accès badge + biométrie</h4>
-                        <p>Implantation dans un immeuble de bureaux.</p>
-                    </div>
-                </div>
+                <button class="carousel-project-prev" aria-label="Projet précédent">❮</button>
+                <button class="carousel-project-next" aria-label="Projet suivant">❯</button>
+                <div class="carousel-project-indicators"></div>
             </div>
         </section>
 
+        <!-- Certifications & formations -->
         <section>
             <h2>Certifications & formations</h2>
             <div class="item">
@@ -96,7 +124,7 @@
         </section>
     </div>
 
-    <!-- Modale -->
+    <!-- Modale (pour l'agrandissement des médias) -->
     <div id="projectModal" class="modal" aria-hidden="true" role="dialog">
         <div class="modal-content">
             <button class="close-btn" onclick="closeModal()">&times;</button>
@@ -112,7 +140,11 @@
         </div>
         <p class="copyright">&copy; 2026 - Neguem Cheffo Daniel</p>
     </footer>
-    <button id="backToTop" title="Retour en haut"><i class="fas fa-arrow-up"></i></button>
+
+    <button id="backToTop" title="Retour en haut" aria-label="Retour en haut">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
     <script src="script.js" defer></script>
 </body>
 </html>

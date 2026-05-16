@@ -1,0 +1,116 @@
+{
+  "fr": {
+    "nav": {
+      "home": "Accueil",
+      "networks": "Réseaux",
+      "electricity": "Électricité & Domotique",
+      "security": "Sécurité électronique",
+      "solar": "Énergie Solaire"
+    },
+    "header": {
+      "tagline": "Fusionner l'énergie, les réseaux et l'intelligence pour transformer vos bâtiments en infrastructures connectées, performantes et sécurisées.",
+      "expert_in": "Expert en :"
+    },
+    "expertise": {
+      "networks": "Réseaux Informatiques",
+      "electricity": "Électricité et Domotique",
+      "security": "Sécurité Électronique",
+      "solar": "Énergie Solaire",
+      "see_details": "Voir les détails"
+    },
+    "tools_section": {
+      "title": "Outils & Certifications en cours"
+    },
+    "education": {
+      "title": "Formation & Diplômes",
+      "cydep": "Programme CYDEP - SCC Stephanopark 61 AH Annesu de Vos Street Vanderbijlpark Gauteng1912 - Certifications obtenues",
+      "management": "Management (VUT)",
+      "bible_studies": "Études Bibliques",
+      "slabvest": "Formation Slabvest projects",
+      "video_tech": "Technicien video-surveillance et controle d'accès",
+      "bts": "BTS Électricité et Énergies Renouvelables",
+      "baccalaureate": "Baccalauréat Scientifique",
+      "elec_adda": "ETS Elec-ADDA - Yaoundé, Cameroun",
+      "hintel": "Institut supérieur Hintel - Yaoundé, Cameroun",
+      "excellence": "Collège Excellence Plus - Yaoundé, Cameroun"
+    },
+    "projects": {
+      "title": "Réalisations & Projets",
+      "video_surveillance": "Installation Vidéosurveillance IP",
+      "cabling": "Câblage Baie de Brassage",
+      "cydep_project": "Projet CYDEP & Management - Vaal University",
+      "see_details": "Cliquer pour voir les détails techniques",
+      "see_network": "Cliquer pour voir l'organisation réseau"
+    },
+    "hobbies": {
+      "title": "Loisirs & Divertissement"
+    },
+    "contact": {
+      "email": "dancheffo29@gmail.com",
+      "phone": "+237 697 654 023",
+      "whatsapp": "WhatsApp",
+      "telegram": "Telegram",
+      "linkedin": "LinkedIn"
+    },
+    "footer": {
+      "copyright": "© 2026 - Neguem Cheffo Daniel"
+    }
+  },
+  "en": {
+    "nav": {
+      "home": "Home",
+      "networks": "Networks",
+      "electricity": "Electricity & Home Automation",
+      "security": "Electronic Security",
+      "solar": "Solar Energy"
+    },
+    "header": {
+      "tagline": "Merge energy, networks and intelligence to transform your buildings into connected, efficient and secure infrastructures.",
+      "expert_in": "Expert in:"
+    },
+    "expertise": {
+      "networks": "Computer Networks",
+      "electricity": "Electricity and Home Automation",
+      "security": "Electronic Security",
+      "solar": "Solar Energy",
+      "see_details": "View details"
+    },
+    "tools_section": {
+      "title": "Tools & Current Certifications"
+    },
+    "education": {
+      "title": "Education & Diplomas",
+      "cydep": "CYDEP Program - SCC Stephanopark 61 AH Annesu de Vos Street Vanderbijlpark Gauteng1912 - Certifications Obtained",
+      "management": "Management (VUT)",
+      "bible_studies": "Bible Studies",
+      "slabvest": "Slabvest projects Training",
+      "video_tech": "Video Surveillance and Access Control Technician",
+      "bts": "BTS Electricity and Renewable Energy",
+      "baccalaureate": "Scientific Baccalaureate",
+      "elec_adda": "ETS Elec-ADDA - Yaoundé, Cameroon",
+      "hintel": "Higher Institute Hintel - Yaoundé, Cameroon",
+      "excellence": "Excellence Plus College - Yaoundé, Cameroon"
+    },
+    "projects": {
+      "title": "Projects & Achievements",
+      "video_surveillance": "IP Video Surveillance Installation",
+      "cabling": "Patch Panel Cabling",
+      "cydep_project": "CYDEP & Management Project - Vaal University",
+      "see_details": "Click to see technical details",
+      "see_network": "Click to see network organization"
+    },
+    "hobbies": {
+      "title": "Hobbies & Entertainment"
+    },
+    "contact": {
+      "email": "dancheffo29@gmail.com",
+      "phone": "+237 697 654 023",
+      "whatsapp": "WhatsApp",
+      "telegram": "Telegram",
+      "linkedin": "LinkedIn"
+    },
+    "footer": {
+      "copyright": "© 2026 - Neguem Cheffo Daniel"
+    }
+  }
+}

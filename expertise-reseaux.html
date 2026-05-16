@@ -29,12 +29,11 @@
                 <li><a href="expertise-reseaux.html" class="active">Réseaux</a></li>
                 <li><a href="expertise-electricite.html">Électricité & Domotique</a></li>
                 <li><a href="expertise-securite.html">Sécurité électronique</a></li>
-                <li><a href="expertise-automatisme.html">Automatisme</a></li>
             </ul>
         </nav>
         <img src="assets/images/ma photo de profil.jpg" alt="Daniel Neguem" class="profile-img" loading="lazy">
         <h1>Expertise Réseaux Informatiques</h1>
-        <p class="tagline">Conception, déploiement et sécurisation d’infrastructures réseau robustes et évolutives.</p>
+        <p class="tagline">Conception, déploiement et sécurisation d'infrastructures réseau robustes et évolutives.</p>
     </header>
 
     <div class="container">
@@ -54,7 +53,7 @@
                 <div class="card">
                     <i class="fas fa-tachometer-alt"></i>
                     <h3>Performance & supervision</h3>
-                    <p>Monitoring (Zabbix, PRTG), optimisation QoS.</p>
+                    <p>Monitoring , optimisation QoS.</p>
                 </div>
                 <div class="card">
                     <i class="fas fa-cloud-upload-alt"></i>
@@ -66,39 +65,48 @@
 
         <section>
             <h2>Projets réalisés</h2>
-            <div class="project-grid">
-                <div class="project-card" onclick="openModal('reseau-projet1')">
-                    <div class="media-container">
-                        <img src="assets/images/projet-reseau1.jpg" alt="Infrastructure réseau" class="placeholder-img" loading="lazy">
-                        <video class="project-video" muted loop preload="none">
-                            <source src="assets/videos/video-reseau1.mp4" type="video/mp4">
-                        </video>
+            <div class="projects-carousel-container">
+                <div class="projects-carousel">
+                    <div class="carousel-project-slide active">
+                        <div class="carousel-project-media">
+                            <img src="assets/images/projet1-petit.png" alt="Infrastructure réseau" class="carousel-project-img" loading="lazy">
+                            <video class="carousel-project-video" muted loop preload="none">
+                                <source src="assets/videos/videosurveillance.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                        <div class="carousel-project-info">
+                            <span class="carousel-project-date">2024</span>
+                            <h4>PLan d implantation  d'un réseau d'entreprise </h4>
+                            <p>ip camera, access points, IP phones , creation de Vlan.</p>
+                        </div>
                     </div>
-                    <div class="project-info">
-                        <span class="date">2024</span>
-                        <h4>Migration infrastructure réseau</h4>
-                        <p>Passage de 1 Gb/s à 10 Gb/s avec redondance.</p>
+                    <div class="carousel-project-slide">
+                        <div class="carousel-project-media">
+                            <img src="assets/images/projet2-petit.png" alt="Baie de brassage" class="carousel-project-img" loading="lazy">
+                        </div>
+                        <div class="carousel-project-info">
+                            <span class="carousel-project-date">2023</span>
+                            <h4>Baie de brassage Cat6a</h4>
+                            <p>Brassage et certification de  points.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-project-slide">
+                        <div class="carousel-project-media">
+                            <img src="assets/images/simulation paket tracer.png" alt="Sécurité réseau" class="carousel-project-img" loading="lazy">
+                        </div>
+                        <div class="carousel-project-info">
+                            <span class="carousel-project-date">2025</span>
+                            <h4>Mise en place d'un pare-feu NextGen</h4>
+                            <p>Protection avancée et segmentation.</p>
+                        </div>
                     </div>
                 </div>
-                <div class="project-card" onclick="openModal('reseau-projet2')">
-                    <div class="media-container">
-                        <img src="assets/images/projet-reseau2.jpg" alt="Baie de brassage" class="placeholder-img" loading="lazy">
-                    </div>
-                    <div class="project-info">
-                        <span class="date">2023</span>
-                        <h4>Baie de brassage Cat6a</h4>
-                        <p>Brassage et certification de 150 points.</p>
-                    </div>
-                </div>
-                <div class="project-card" onclick="openModal('reseau-projet3')">
-                    <div class="media-container">
-                        <img src="assets/images/projet-reseau3.jpg" alt="Sécurité réseau" class="placeholder-img" loading="lazy">
-                    </div>
-                    <div class="project-info">
-                        <span class="date">2025</span>
-                        <h4>Mise en place d’un pare-feu NextGen</h4>
-                        <p>Protection avancée et segmentation.</p>
-                    </div>
+                <button class="carousel-project-prev" aria-label="Projet précédent"><i class="fas fa-chevron-left"></i></button>
+                <button class="carousel-project-next" aria-label="Projet suivant"><i class="fas fa-chevron-right"></i></button>
+                <div class="carousel-project-indicators">
+                    <span class="carousel-project-indicator active"></span>
+                    <span class="carousel-project-indicator"></span>
+                    <span class="carousel-project-indicator"></span>
                 </div>
             </div>
         </section>
@@ -111,9 +119,9 @@
                 <p class="desc">Fondamentaux réseaux, routage, switching, sécurité.</p>
             </div>
             <div class="item">
-                <span class="date">2024</span>
-                <h4>Formation Fortinet NSE 4</h4>
-                <p class="desc">Sécurité des réseaux et pare-feu FortiGate.</p>
+                <span class="date">2027</span>
+                <h4>Licence en éseaux et Sécurité</h4>
+                <p class="desc">Diplome universitaire en réseaux et sécurité.</p>
             </div>
         </section>
     </div>
