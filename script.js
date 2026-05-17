@@ -380,128 +380,125 @@ function navigateLightbox(delta) {
 
 // ==================== CARROUSEL PROJETS (expertises) ====================
 function initExpertiseCarousel() {
-    const container = document.querySelector('.projects-carousel-container');
-    if (!container) return;
+    document.querySelectorAll('.projects-carousel-container').forEach(container => {
+        const track = container.querySelector('.projects-carousel');
+        const slides = Array.from(container.querySelectorAll('.carousel-project-slide'));
+        const prevBtn = container.querySelector('.carousel-project-prev');
+        const nextBtn = container.querySelector('.carousel-project-next');
+        let indicators = Array.from(container.querySelectorAll('.carousel-project-indicator'));
 
-    const track = container.querySelector('.projects-carousel');
-    const slides = container.querySelectorAll('.carousel-project-slide');
-    const prevBtn = container.querySelector('.carousel-project-prev');
-    const nextBtn = container.querySelector('.carousel-project-next');
-    let indicators = container.querySelectorAll('.carousel-project-indicator');
+        if (!track || slides.length === 0) return;
 
-    if (!track || slides.length === 0) return;
-
-    // Créer les indicateurs s'ils n'existent pas
-    if (indicators.length === 0 && slides.length > 1) {
         const indicatorsDiv = container.querySelector('.carousel-project-indicators') || (() => {
             const div = document.createElement('div');
             div.className = 'carousel-project-indicators';
             container.appendChild(div);
             return div;
         })();
-        for (let i = 0; i < slides.length; i++) {
-            const dot = document.createElement('span');
-            dot.classList.add('carousel-project-indicator');
-            if (i === 0) dot.classList.add('active');
-            indicatorsDiv.appendChild(dot);
-        }
-        indicators = container.querySelectorAll('.carousel-project-indicator');
-    }
 
-    let currentIndex = 0;
-    let autoInterval = null;
-    const delay = 6000;
-
-    function showSlide(index) {
-        // Gestion des limites
-        if (index >= slides.length) currentIndex = 0;
-        else if (index < 0) currentIndex = slides.length - 1;
-        else currentIndex = index;
-
-        slides.forEach((slide, i) => {
-            slide.classList.toggle('active', i === currentIndex);
-        });
-        indicators.forEach((ind, i) => {
-            ind.classList.toggle('active', i === currentIndex);
-        });
-    }
-
-    function nextSlide() { showSlide(currentIndex + 1); }
-    function prevSlide() { showSlide(currentIndex - 1); }
-
-    function startAuto() {
-        if (autoInterval) clearInterval(autoInterval);
-        autoInterval = setInterval(nextSlide, delay);
-    }
-    function stopAuto() { if (autoInterval) clearInterval(autoInterval); }
-
-    if (prevBtn) prevBtn.addEventListener('click', () => { stopAuto(); prevSlide(); startAuto(); });
-    if (nextBtn) nextBtn.addEventListener('click', () => { stopAuto(); nextSlide(); startAuto(); });
-
-    indicators.forEach((ind, idx) => {
-        ind.addEventListener('click', () => { stopAuto(); showSlide(idx); startAuto(); });
-    });
-
-    container.addEventListener('mouseenter', stopAuto);
-    container.addEventListener('mouseleave', startAuto);
-
-    // Gestion vidéos au survol
-    slides.forEach(slide => {
-        const video = slide.querySelector('.carousel-project-video');
-        if (video) {
-            slide.addEventListener('mouseenter', () => {
-                video.load();
-                video.play().catch(() => {});
+        if (indicators.length === 0 && slides.length > 1) {
+            indicatorsDiv.innerHTML = '';
+            slides.forEach((_, i) => {
+                const dot = document.createElement('span');
+                dot.className = 'carousel-project-indicator';
+                if (i === 0) dot.classList.add('active');
+                indicatorsDiv.appendChild(dot);
             });
-            slide.addEventListener('mouseleave', () => {
-                video.pause();
-                video.currentTime = 0;
+            indicators = Array.from(container.querySelectorAll('.carousel-project-indicator'));
+        }
+
+        let currentIndex = 0;
+        let autoInterval = null;
+        const delay = parseInt(container.dataset.interval, 10) || 6000;
+
+        function showSlide(index) {
+            if (index >= slides.length) currentIndex = 0;
+            else if (index < 0) currentIndex = slides.length - 1;
+            else currentIndex = index;
+
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === currentIndex);
+            });
+            indicators.forEach((ind, i) => {
+                ind.classList.toggle('active', i === currentIndex);
             });
         }
-    });
 
-    // Clic pour agrandir (lightbox simple)
-    slides.forEach(slide => {
-        const media = slide.querySelector('.carousel-project-media');
-        if (!media) return;
-        media.style.cursor = 'pointer';
-        media.addEventListener('click', (e) => {
-            e.stopPropagation();
-            const img = slide.querySelector('.carousel-project-img');
+        function nextSlide() { showSlide(currentIndex + 1); }
+        function prevSlide() { showSlide(currentIndex - 1); }
+
+        function startAuto() {
+            if (autoInterval) clearInterval(autoInterval);
+            autoInterval = setInterval(nextSlide, delay);
+        }
+        function stopAuto() { if (autoInterval) clearInterval(autoInterval); }
+
+        if (prevBtn) prevBtn.addEventListener('click', () => { stopAuto(); prevSlide(); startAuto(); });
+        if (nextBtn) nextBtn.addEventListener('click', () => { stopAuto(); nextSlide(); startAuto(); });
+
+        indicators.forEach((ind, idx) => {
+            ind.addEventListener('click', () => { stopAuto(); showSlide(idx); startAuto(); });
+        });
+
+        container.addEventListener('mouseenter', stopAuto);
+        container.addEventListener('mouseleave', startAuto);
+
+        slides.forEach(slide => {
             const video = slide.querySelector('.carousel-project-video');
-            const title = slide.querySelector('h4')?.innerText || 'Projet';
-            const date = slide.querySelector('.carousel-project-date')?.innerText || '';
-            const desc = slide.querySelector('p')?.innerText || '';
-
-            let mediaHTML = '';
-            if (video && video.src) {
-                mediaHTML = `<video controls autoplay style="width:100%; max-height:70vh;"><source src="${video.src}" type="video/mp4">Vidéo non supportée</video>`;
-            } else if (img && img.src) {
-                mediaHTML = `<img src="${img.src}" style="width:100%; max-height:70vh; object-fit:contain;" alt="${title}">`;
-            }
-
-            const modalBody = document.getElementById('modal-body');
-            if (modalBody) {
-                modalBody.innerHTML = `
-                    <div style="text-align:center;">
-                        <h3>${title}</h3>
-                        <span style="color:var(--accent);">${date}</span>
-                        <p>${desc}</p>
-                        <hr>
-                        ${mediaHTML}
-                    </div>
-                `;
-                const modal = document.getElementById('projectModal');
-                if (modal) {
-                    modal.style.display = 'flex';
-                    document.body.style.overflow = 'hidden';
-                }
+            if (video) {
+                slide.addEventListener('mouseenter', () => {
+                    video.load();
+                    video.play().catch(() => {});
+                });
+                slide.addEventListener('mouseleave', () => {
+                    video.pause();
+                    video.currentTime = 0;
+                });
             }
         });
-    });
 
-    showSlide(0);
-    startAuto();
+        slides.forEach(slide => {
+            const media = slide.querySelector('.carousel-project-media');
+            if (!media) return;
+            media.style.cursor = 'pointer';
+            media.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const img = slide.querySelector('.carousel-project-img');
+                const video = slide.querySelector('.carousel-project-video');
+                const title = slide.querySelector('h4')?.innerText || 'Projet';
+                const date = slide.querySelector('.carousel-project-date')?.innerText || '';
+                const desc = slide.querySelector('p')?.innerText || '';
+
+                let mediaHTML = '';
+                if (video && video.currentSrc) {
+                    mediaHTML = `<video controls autoplay style="width:100%; max-height:70vh;"><source src="${video.currentSrc}" type="video/mp4">Vidéo non supportée</video>`;
+                } else if (img && img.src) {
+                    mediaHTML = `<img src="${img.src}" style="width:100%; max-height:70vh; object-fit:contain;" alt="${title}">`;
+                }
+
+                const modalBody = document.getElementById('modal-body');
+                if (modalBody) {
+                    modalBody.innerHTML = `
+                        <div style="text-align:center;">
+                            <h3>${title}</h3>
+                            <span style="color:var(--accent);">${date}</span>
+                            <p>${desc}</p>
+                            <hr>
+                            ${mediaHTML}
+                        </div>
+                    `;
+                    const modal = document.getElementById('projectModal');
+                    if (modal) {
+                        modal.style.display = 'flex';
+                        document.body.style.overflow = 'hidden';
+                    }
+                }
+            });
+        });
+
+        showSlide(0);
+        startAuto();
+    });
 }
 
 // ==================== FOND HIGH-TECH (CANVAS) ====================

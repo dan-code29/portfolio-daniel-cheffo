@@ -3,15 +3,157 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Détails de la formation technique chez Slabvest Projects - Génie civil, construction et supervision de chantiers">
-    <meta name="keywords" content="Slabvest Projects, formation, génie civil, construction, chantier, supervision">
+    <meta name="description" content="Galerie des travaux CYDP A-TEAM 2026 - Slabvest Projets, Maintenance, Work Party">
     <meta name="theme-color" content="#3498db">
-    <title>Formation Slabvest Projects - Génie Civil & Construction</title>
+    <title>CYDP A-TEAM 2026 - Galerie travaux</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* Styles spécifiques aux carrousels (sans conflit avec style.css) */
+        .photo-carousel {
+            position: relative;
+            margin: 2rem 0;
+            padding: 0.5rem;
+            background: transparent;
+        }
+        .carousel-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 1rem;
+        }
+        .carousel-slide {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        .carousel-slide.active {
+            display: block;
+            opacity: 1;
+        }
+        .slide-media-wrapper {
+            cursor: pointer;
+            overflow: hidden;
+            border-radius: 1rem;
+            max-height: 520px;
+            background: #000;
+            text-align: center;
+        }
+        .slide-media-wrapper img,
+        .slide-media-wrapper video {
+            width: 100%;
+            height: auto;
+            max-height: 520px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+        .slide-media-wrapper:hover img,
+        .slide-media-wrapper:hover video {
+            transform: scale(1.02);
+        }
+        .carousel-prev,
+        .carousel-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.6);
+            border: none;
+            color: white;
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+        .carousel-prev:hover, .carousel-next:hover {
+            background: var(--accent, #3498db);
+        }
+        .carousel-prev { left: 0.5rem; }
+        .carousel-next { right: 0.5rem; }
+        .carousel-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 0.6rem;
+            margin-top: 1.2rem;
+            flex-wrap: wrap;
+        }
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ccc;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .indicator.active {
+            background: var(--accent, #3498db);
+            transform: scale(1.2);
+        }
+        .slide-caption {
+            margin-top: 1rem;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--text, #333);
+        }
+        .slide-description {
+            margin-top: 0.4rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        body.dark .slide-description {
+            color: #bbb;
+        }
+        /* Lightbox personnalisée pour cette page (réutilise la modale globale si elle existe, mais on en crée une simple) */
+        .media-lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            cursor: pointer;
+        }
+        .media-lightbox.active {
+            display: flex;
+        }
+        .lightbox-media {
+            max-width: 90%;
+            max-height: 80vh;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+        .lightbox-caption {
+            margin-top: 1rem;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 2rem;
+            color: white;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-    <button id="dark-mode-toggle" class="theme-btn" aria-label="Changer le thème (clair/sombre)">
+    <button id="dark-mode-toggle" class="theme-btn" aria-label="Changer le thème">
         <i class="fas fa-moon"></i>
     </button>
 
@@ -25,102 +167,309 @@
             </ul>
         </nav>
         <img src="assets/images/ma photo de profil.jpg" alt="Daniel Neguem" class="profile-img" loading="lazy">
-        <h1>Formation Slabvest Projects</h1>
-        <p class="tagline">Formation pratique en génie civil, construction et supervision de chantiers</p>
+        <h1>Travail CYDP A-TEAM 2026</h1>
+        <p class="tagline">SCC Stephanopark - Slabvest, Maintenance & Work Party</p>
     </header>
 
     <div class="container">
         <section>
-            <h2>À propos de la formation</h2>
-            <div class="detail-description">
-                <p><strong>Slabvest Projects</strong> est une entreprise spécialisée dans le génie civil et les travaux de construction. Cette formation m'a permis d'acquérir une expérience pratique en terrain réel avec des professionnels expérimentés du secteur.</p>
+            <h2>Zones de travail au A-TEAM</h2>
+            <ul class="detail-description" style="margin-left: 1.5rem;">
+                <li><p><strong>Slabvest Projets</strong> – chantier de construction / rénovation/ soudure/ fabrication des pavés</p></li>
+                <li><p><strong>Maintenance CYDP</strong> – entretien électrique, plomberie, équipements</p></li>
+                <li><p><strong>Work Party</strong> – travail d ensemble pour la maintenance du site</p></li>
+            </ul>
+        </section>
 
-                <p>La <strong>formation technique chez Slabvest Projects</strong> a été une opportunité enrichissante pour développer mes compétences en gestion de projets BTP, supervision de chantiers et application des normes de sécurité sur les sites de construction.</p>
+        <!-- ========== CARROUSEL 1 : SLABVEST PROJETS ========== -->
+        <section>
+            <h2>Galerie Slabvest Projets</h2>
+            <div class="photo-carousel" id="carousel-slabvest">
+                <div class="carousel-container">
 
-                <h3>Compétences développées :</h3>
-                <ul>
-                    <li><i class="fas fa-check-circle"></i> Supervision et coordination de chantiers</li>
-                    <li><i class="fas fa-check-circle"></i> Gestion des ressources et planning BTP</li>
-                    <li><i class="fas fa-check-circle"></i> Normes et standards de sécurité en construction</li>
-                    <li><i class="fas fa-check-circle"></i> Lecture de plans et devis techniques</li>
-                    <li><i class="fas fa-check-circle"></i> Contrôle de qualité et respect des délais</li>
-                    <li><i class="fas fa-check-circle"></i> Communication avec les équipes sur site</li>
-                    <li><i class="fas fa-check-circle"></i> Gestion de la santé et sécurité (HSE)</li>
-                </ul>
+                    <div class="carousel-slide active">
+                        <div class="slide-media-wrapper" data-media-type="image" data-src="assets/images/work fev1.jpg" data-caption="Janvier - Fabrication et livraison des pavés,pilas,..." data-description="Préparation du chantier Slabvest, répartition des tâches.">
+                            <img src="assets/images/work fev1.jpg" alt="Réunion Slabvest" loading="lazy">
+                        </div>
+                        <div class="slide-caption"> Février SET in Stone</div>
+                        <p class="slide-description">Fabrication et livraison des pavés,pilas,...</p>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="slide-media-wrapper" data-media-type="image" data-src="assets/images/work fev3.jpg" data-caption="Février - Avancement du travail" data-description="Mise en place des fondations et structures.">
+                            <img src="assets/images/work fev2.jpg" alt="Fabrication et livraison des pavés,pilas,..." loading="lazy">
+                        </div>
+                        <div class="slide-caption">Avancement du travail</div>
+                        <p class="slide-description">Set in Stone.</p>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="slide-media-wrapper" data-media-type="image" data-src="assets/images/fev maint 2.jpg" data-caption="  Équipe en action renovation" data-description="renovation.">
+                            <img src="assets/images/fev maint 1.jpg" alt="Équipe en action" loading="lazy">
+                        </div>
+                        <div class="slide-caption">mi Fev- fin Fevrier Maintenance</div>
+                        <p class="slide-description">.</p>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="slide-media-wrapper" data-media-type="image" data-src="assets/images/fev maint 3.jpg" data-caption="fin Février - Maintenance renovation" data-description="Maintenance renovation.">
+                            <img src="assets/images/fev maint 3a.jpg" alt="Inspection" loading="lazy">
+                        </div>
+                        <div class="slide-caption">Maintenance renovation</div>
+                        <p class="slide-description">Maintenance renovation.</p>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="slide-media-wrapper" data-media-type="image" data-src="assets/images/fev maint 4.jpg" data-caption="fevrier - renovation soccer field" data-description="installation de fillets pour stopper les balles terrain de soccer.">
+                            <img src="assets/images/fev maint 5.jpg" alt="Formation" loading="lazy">
+                        </div>
+                        <div class="slide-caption">Maintenance renovation</div>
+                        <p class="slide-description"> renovation soccer field.</p>
+                    </div>
 
-                <h3>Domaines de travail :</h3>
-                <p>Au cours de cette formation, j'ai travaillé sur plusieurs aspects de la construction :</p>
-                <ul>
-                    <li><i class="fas fa-hammer"></i> Travaux de maçonnerie et béton armé</li>
-                    <li><i class="fas fa-building"></i> Construction de structures résidentielles et commerciales</li>
-                    <li><i class="fas fa-hard-hat"></i> Installation d'équipements et finitions</li>
-                    <li><i class="fas fa-chart-bar"></i> Documentation et suivi de projet</li>
-                </ul>
+                    <div class="carousel-slide">
+                        <div class="slide-media-wrapper" data-media-type="image" data-src="assets/images/fev maint 7.jpg" data-caption="fev - Maintenance renovation" data-description="renovation peinture magasin slabvest projets.">
+                            <img src="assets/images/fev maint 6.jpg" alt="Clôture" loading="lazy">
+                        </div>
+                        <div class="slide-caption">Maintenance renovation</div>
+                        <p class="slide-description">travaux de peinture magasin slabvest projets.</p>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="slide-media-wrapper" data-media-type="image" data-src="assets/images/cydpwork1.jpg" data-caption="Mars - Soudure poteau d eclairage du stade de football" data-description="Soudure poteau d eclairage du stade de football.">
+                            <img src="assets/images/welding 7.jpg" alt="Clôture" loading="lazy">
+                        </div>
+                        <div class="slide-caption">Mars - Soudure poteau d eclairage du stade de football</div>
+                        <p class="slide-description">Soudure poteau d eclairage du stade de football.</p>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="slide-media-wrapper" data-media-type="image" data-src="assets/images/mars welding 1.jpg" data-caption="Mars - nettoyage des fer au Ten Ten pour protection des fer contre la corosion et meilleur adherance de la peinture" data-description="Soudure poteau d eclairage du stade de football.">
+                            <img src="assets/images/mars welding 2.jpg" alt="Clôture" loading="lazy">
+                        </div>
+                        <div class="slide-caption">nettoyage des fer au Ten Ten</div>
+                        <p class="slide-description">Soudure poteau d eclairage du stade de football.</p>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="slide-media-wrapper" data-media-type="image" data-src="assets/images/cydpwork.jpg" data-caption="Mars - Soudure poteau d eclairage du stade de football" data-description="Soudure poteau d eclairage du stade de football.">
+                            <img src="assets/images/cydpwork.jpg" alt="Clôture" loading="lazy">
+                        </div>
+                        <div class="slide-caption">Mars - Soudure </div>
+                        <p class="slide-description">Soudure poteau d eclairage du stade de football.</p>
+                    </div>
 
-                <h3>Attestation reçue :</h3>
-                <p><strong>Attestation de Formation Technique - Slabvest Projects</strong></p>
-                <p>Cette certification valide ma capacité à intervenir efficacement dans des environnements de construction complexes, en appliquant les meilleures pratiques de l'industrie et en respectant les normes de sécurité strictes.</p>
+                    <div class="carousel-slide">
+                        <div class="slide-media-wrapper" data-media-type="image" data-src="assets/images/welding 6.jpg" data-caption="Mars - Soudure" data-description="Soudure poteau d eclairage du stade de football.">
+                            <img src="assets/images/mars welding 3.jpg" alt="Clôture" loading="lazy">
+                        </div>
+                        <div class="slide-caption">Soudure</div>
+                        <p class="slide-description">Soudure poteau d eclairage du stade de football.</p>
+                    </div>
+
+                    <div class="carousel-slide">
+                        <div class="slide-media-wrapper" data-media-type="image" data-src="assets/images/welding 10.jpg" data-caption="mars soudure" data-description="soudure.">
+                            <img src="assets/images/welding 10.jpg" alt="Clôture" loading="lazy">
+                        </div>
+                        <div class="slide-caption">Soudure</div>
+                        <p class="slide-description">Soudure poteau d eclairage du stade de football.</p>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="slide-media-wrapper" data-media-type="image" data-src="assets/images/welding 9 peinture.jpg" data-caption="Mars - Peinture" data-description="Peinture poteau d eclairage du stade de football.">
+                            <img src="assets/images/welding 8 peinture.jpg" alt="Clôture" loading="lazy">
+                        </div>
+                        <div class="slide-caption"> Mars-evolution du projet : Peinture</div>
+                        <p class="slide-description">evolution du projet : Peinture.</p>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="slide-media-wrapper" data-media-type="image" data-src="assets/images/Avril meca 11.jpg" data-caption="Avril- Mecanique" data-description="Mecanique engin lourd, voiture, appareil de construction.">
+                            <img src="assets/images/Avril meca 1 (11).jpg" alt="Clôture" loading="lazy">
+                        </div>
+                        <div class="slide-caption">AvriL- Mecanique</div>
+                        <p class="slide-description">Mecanique engin lourd, voiture, appareil de construction.</p>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="slide-media-wrapper" data-media-type="image" data-src="assets/images/avril meca 1 (4).jpg" data-caption="Avril- Moteur chariot elevateur" data-description="Mecanique engin lourd, voiture, appareil de construction.">
+                            <img src="assets/images/Avril meca 14.jpg" alt="Clôture" loading="lazy">
+                        </div>
+                        <div class="slide-caption">Maintenance chariot elevateur</div>
+                        <p class="slide-description">Demontage moteur de chariot elevateur.</p>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="slide-media-wrapper" data-media-type="image" data-src="assets/images/avril meca 1 (5).jpg" data-caption="Avril- Maintenance chariot elevateur" data-description="renovation peinture magasin slabvest projets.">
+                            <img src="assets/images/Avril meca 1 (5).jpg" alt="Clôture" loading="lazy">
+                        </div>
+                        <div class="slide-caption">Maintenance chariot elevateur</div>
+                        <p class="slide-description">travaux de maintenance sur chariot elevateur.</p>
+                    </div>
+
+                    <div class="carousel-slide">
+                        <div class="slide-media-wrapper" data-media-type="image" data-src="assets/images/avril meca 1 (6).jpg" data-caption="Avril- Maintenance chariot elevateur" data-description="renovation peinture magasin slabvest projets.">
+                            <img src="assets/images/Avril meca 1 (6).jpg" alt="Clôture" loading="lazy">
+                        </div>
+                        <div class="slide-caption">Maintenance chariot elevateur</div>
+                        <p class="slide-description">travaux de maintenance sur chariot elevateur.</p>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="slide-media-wrapper" data-media-type="image" data-src="assets/images/avril meca 1 (8).jpg" data-caption="Avril- Maintenance " data-description="maintenance moteur.">
+                            <img src="assets/images/Avril meca 1 (8).jpg" alt="Clôture" loading="lazy">
+                        </div>
+                        <div class="slide-caption"> Avril-Maintenance moteur</div>
+                        <p class="slide-description">travaux de maintenance sur un moteur.</p>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="slide-media-wrapper" data-media-type="image" data-src="assets/images/fev maint 7.jpg" data-caption="fev - Maintenance renovation" data-description="renovation peinture magasin slabvest projets.">
+                            <img src="assets/images/fev maint 6.jpg" alt="Clôture" loading="lazy">
+                        </div>
+                        <div class="slide-caption">Mai installation pavé</div>
+                        <p class="slide-description">.</p>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="slide-media-wrapper" data-media-type="image" data-src="assets/images/fev maint 7.jpg" data-caption="fev - Maintenance renovation" data-description="renovation peinture magasin slabvest projets.">
+                            <img src="assets/images/fev maint 6.jpg" alt="Clôture" loading="lazy">
+                        </div>
+                        <div class="slide-caption">juin</div>
+                        <p class="slide-description">.</p>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="slide-media-wrapper" data-media-type="image" data-src="assets/images/fev maint 7.jpg" data-caption="fev - Maintenance renovation" data-description="renovation peinture magasin slabvest projets.">
+                            <img src="assets/images/fev maint 6.jpg" alt="Clôture" loading="lazy">
+                        </div>
+                        <div class="slide-caption">Juillet</div>
+                        <p class="slide-description">.</p>
+                    </div>
+
+                    <div class="carousel-slide">
+                        <div class="slide-media-wrapper" data-media-type="image" data-src="assets/images/fev maint 7.jpg" data-caption="fev - Maintenance renovation" data-description="renovation peinture magasin slabvest projets.">
+                            <img src="assets/images/fev maint 6.jpg" alt="Clôture" loading="lazy">
+                        </div>
+                        <div class="slide-caption">Août</div>
+                        <p class="slide-description">.</p>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="slide-media-wrapper" data-media-type="image" data-src="assets/images/fev maint 7.jpg" data-caption="fev - Maintenance renovation" data-description="renovation peinture magasin slabvest projets.">
+                            <img src="assets/images/fev maint 6.jpg" alt="Clôture" loading="lazy">
+                        </div>
+                        <div class="slide-caption">Septembre</div>
+                        <p class="slide-description"></p>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="slide-media-wrapper" data-media-type="image" data-src="assets/images/fev maint 7.jpg" data-caption="fev - Maintenance renovation" data-description="renovation peinture magasin slabvest projets.">
+                            <img src="assets/images/fev maint 6.jpg" alt="Clôture" loading="lazy">
+                        </div>
+                        <div class="slide-caption">Octobre</div>
+                        <p class="slide-description">.</p>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="slide-media-wrapper" data-media-type="image" data-src="assets/images/fev maint 7.jpg" data-caption="fev - Maintenance renovation" data-description="renovation peinture magasin slabvest projets.">
+                            <img src="assets/images/fev maint 6.jpg" alt="Clôture" loading="lazy">
+                        </div>
+                        <div class="slide-caption">Novembre</div>
+                        <p class="slide-description">.</p>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="slide-media-wrapper" data-media-type="image" data-src="assets/images/fev maint 7.jpg" data-caption="fev - Maintenance renovation" data-description="renovation peinture magasin slabvest projets.">
+                            <img src="assets/images/fev maint 6.jpg" alt="Clôture" loading="lazy">
+                        </div>
+                        <div class="slide-caption">Décembre</div>
+                        <p class="slide-description">.</p>
+                    </div>
+
+                    <div class="carousel-slide">
+                        <div class="slide-media-wrapper" data-media-type="image" data-src="assets/images/fev maint 7.jpg" data-caption="fev - Maintenance renovation" data-description="renovation peinture magasin slabvest projets.">
+                            <img src="assets/images/fev maint 6.jpg" alt="Clôture" loading="lazy">
+                        </div>
+                        <div class="slide-caption">Décembre</div>
+                        <p class="slide-description">travaux de peinture magasin slabvest projets.</p>
+                    </div>
+                </div>
+                <button class="carousel-prev" aria-label="Précédent"><i class="fas fa-chevron-left"></i></button>
+                <button class="carousel-next" aria-label="Suivant"><i class="fas fa-chevron-right"></i></button>
+                <div class="carousel-indicators">
+                    <span class="indicator active" data-slide="0"></span>
+                    <span class="indicator" data-slide="1"></span>
+                    <span class="indicator" data-slide="2"></span>
+                    <span class="indicator" data-slide="3"></span>
+                    <span class="indicator" data-slide="4"></span>
+                    <span class="indicator" data-slide="5"></span>
+                    <span class="indicator" data-slide="6"></span>
+                    <span class="indicator" data-slide="7"></span>
+                    <span class="indicator" data-slide="8"></span>
+                    <span class="indicator" data-slide="9"></span>
+                    <span class="indicator" data-slide="10"></span>
+                    <span class="indicator" data-slide="11"></span>
+                    <span class="indicator" data-slide="12"></span>
+                    <span class="indicator" data-slide="13"></span>
+                    <span class="indicator" data-slide="14"></span>
+                    <span class="indicator" data-slide="15"></span>
+                    <span class="indicator" data-slide="16"></span>
+                    <span class="indicator" data-slide="17"></span>
+                    <span class="indicator" data-slide="18"></span>
+                    <span class="indicator" data-slide="19"></span>
+                    <span class="indicator" data-slide="20"></span>
+                    <span class="indicator" data-slide="21"></span>
+                    <span class="indicator" data-slide="22"></span>
+                    <span class="indicator" data-slide="23"></span>
+                    <span class="indicator" data-slide="24"></span>
+                    <span class="indicator" data-slide="25"></span>
+                    
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== CARROUSEL 2 : MAINTENANCE & WORK PARTY ========== -->
+        <section>
+            <h2>Galerie Maintenance & Work Party</h2>
+            <div class="photo-carousel" id="carousel-maintenance">
+                <div class="carousel-container">
+                    <div class="carousel-slide active">
+                        <div class="slide-media-wrapper" data-media-type="image" data-src="assets/images/work pace1.jpg" data-caption="Pace- installation d un chauffe eau" data-description="pace- installation d un chauffe eau.">
+                            <img src="assets/images/work pace1.jpg" alt="Installation chauffe eau" loading="lazy">
+                        </div>
+                        <div class="slide-caption">Travail Pace- installation d un chauffe eau</div>
+                        <p class="slide-description">Installation d un chauffe eau .</p>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="slide-media-wrapper" data-media-type="image" data-src="assets/images/work pace 3.jpg" data-caption=" - Work Party " data-description="installation tuyau d evacuation d eau.">
+                            <img src="assets/images/work pace 3.jpg" alt="Work party" loading="lazy">
+                        </div>
+                        <div class="slide-caption">Work party</div>
+                        <p class="slide-description">Work party - installation tuyaux d evacuation d eau soccer field</p>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="slide-media-wrapper" data-media-type="video" data-src="assets/videos/fencerealisation1.mp4" data-caption="Mars - Réalisation vidéo" data-description="Pose de nouveaux poteaux et câblage.">
+                            <video controls preload="metadata" poster="assets/images/fallback.jpg">
+                                <source src="assets/videos/fencerealisation1.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                        <div class="slide-caption">Vidéo de réalisation</div>
+                        <p class="slide-description">Séquence vidéo montrant une intervention technique et la progression du travail sur le terrain.</p>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="slide-media-wrapper" data-media-type="image" data-src="assets/images/rea electric fence 1.jpg" data-caption="Avril - Inspection technique" data-description="Validation des normes avant remise en service.">
+                            <img src="assets/images/rea electric fence 1.jpg" alt="Inspection" loading="lazy">
+                        </div>
+                        <div class="slide-caption">Inspection avant remise en service</div>
+                        <p class="slide-description">Vérification minutieuse des équipements et préparation pour une utilisation durable.</p>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="slide-media-wrapper" data-media-type="image" data-src="assets/images/cameraRealisation2.jpg" data-caption="Mai - Installation surveillance" data-description="Mise en place de caméras IP.">
+                            <img src="assets/images/cameraRealisation2.jpg" alt="Installation surveillance" loading="lazy">
+                        </div>
+                        <div class="slide-caption">Installation de surveillance</div>
+                        <p class="slide-description">Mise en place de caméras et suivi pour améliorer la sécurité des espaces de travail.</p>
+                    </div>
+                </div>
+                <button class="carousel-prev" aria-label="Précédent"><i class="fas fa-chevron-left"></i></button>
+                <button class="carousel-next" aria-label="Suivant"><i class="fas fa-chevron-right"></i></button>
+                <div class="carousel-indicators">
+                    <span class="indicator active" data-slide="0"></span>
+                    <span class="indicator" data-slide="1"></span>
+                    <span class="indicator" data-slide="2"></span>
+                    <span class="indicator" data-slide="3"></span>
+                    <span class="indicator" data-slide="4"></span>
+                </div>
             </div>
         </section>
 
         <section>
-            <h2>Projets & Réalisations</h2>
-            <div class="impact-grid">
-                <div class="impact-card">
-                    <i class="fas fa-building"></i>
-                    <h3>Coordination de Chantiers</h3>
-                    <p>Supervision complète des activités de construction, coordination des équipes et respect des délais de livraison.</p>
-                </div>
-                <div class="impact-card">
-                    <i class="fas fa-hard-hat"></i>
-                    <h3>Sécurité & Conformité</h3>
-                    <p>Application rigoureuse des normes HSE, prévention des risques et formation continue aux protocoles de sécurité.</p>
-                </div>
-                <div class="impact-card">
-                    <i class="fas fa-chart-line"></i>
-                    <h3>Gestion Budgétaire</h3>
-                    <p>Suivi des coûts, optimisation des ressources et rapports de progression financière des projets.</p>
-                </div>
-                <div class="impact-card">
-                    <i class="fas fa-users"></i>
-                    <h3>Gestion d'Équipe</h3>
-                    <p>Management opérationnel des équipes de travail, délégation et motivation du personnel sur chantier.</p>
-                </div>
-            </div>
-        </section>
-
-        <section>
-            <h2>Apprentissages clés</h2>
-            <div class="detail-description">
-                <h3>Techniques de construction :</h3>
-                <p>J'ai acquis une compréhension profonde des méthodologies de construction modernes, incluant :</p>
-                <ul>
-                    <li>Préparation et terrassement des sites</li>
-                    <li>Fondations et structures porteuses</li>
-                    <li>Systèmes de contrôle qualité en construction</li>
-                    <li>Techniques de finition et d'aménagement</li>
-                </ul>
-
-                <h3>Gestion de projet :</h3>
-                <p>Expérience pratique en :</p>
-                <ul>
-                    <li>Planification et échéancier des tâches</li>
-                    <li>Allocation des ressources humaines et matérielles</li>
-                    <li>Suivi et reporting de progression</li>
-                    <li>Résolution de problèmes en environnement dynamique</li>
-                </ul>
-
-                <h3>Collaboration professionnelle :</h3>
-                <p>Travail en équipe multidisciplinaire avec ingénieurs, ouvriers qualifiés et prestataires, développant ainsi mes capacités de communication et de collaboration dans un environnement professionnel exigeant.</p>
-            </div>
-        </section>
-
-        <section>
-            <h2>Impact personnel & professionnel</h2>
-            <div class="detail-description">
-                <p>Cette formation chez <strong>Slabvest Projects</strong> a significativement enrichi mon profil professionnel en me donnant une expérience concrète du secteur BTP. Elle a renforcé ma compréhension des défis pratiques de la gestion de chantiers et m'a préparé à aborder des projets de construction complexes avec confiance et professionnalisme.</p>
-
-                <p>Les apprentissages acquis me permettent de mieux comprendre les infrastructures, la planification de projets et la gestion d'équipes dans des environnements professionnels exigeants - des compétences transférables précieuses pour ma carrière future.</p>
+            <h2>Ce que j'ai retiré de cette expérience</h2>
+            <div class="bible-study-description" style="font-style: italic; border-left: 4px solid var(--accent); padding-left: 1rem;">
+                <p>“I have to escape from myself and run on the path every day like never before”</p>
+                <p>“Give my all and never give up”</p>
             </div>
         </section>
     </div>
@@ -128,13 +477,137 @@
     <footer>
         <div class="contact-info">
             <p><i class="fas fa-envelope"></i> <a href="mailto:dancheffo29@gmail.com">dancheffo29@gmail.com</a></p>
-            <p><i class="fas fa-phone"></i> <a href="tel:+237697654023">+237 697 654 023</a> | <a href="https://wa.me/237697654023" target="_blank" class="icon-wa"><i class="fab fa-whatsapp"></i> WhatsApp</a></p>
-            <p><a href="https://t.me/+237697654023" target="_blank" class="icon-tg"><i class="fab fa-telegram"></i> Telegram</a> | <a href="https://www.linkedin.com/in/daniel-cheffo-tech" target="_blank" class="icon-li"><i class="fab fa-linkedin"></i> LinkedIn</a></p>
+            <p><i class="fas fa-phone"></i> <a href="tel:+237697654023">+237 697 654 023</a> | <a href="https://wa.me/237697654023" class="icon-wa"><i class="fab fa-whatsapp"></i> WhatsApp</a></p>
+            <p><a href="https://t.me/+237697654023" class="icon-tg"><i class="fab fa-telegram"></i> Telegram</a> | <a href="https://www.linkedin.com/in/daniel-cheffo-tech" class="icon-li"><i class="fab fa-linkedin"></i> LinkedIn</a></p>
         </div>
         <p class="copyright">&copy; 2026 - Neguem Cheffo Daniel</p>
     </footer>
-    
+
     <button id="backToTop" title="Retour en haut"><i class="fas fa-arrow-up"></i></button>
+
+    <!-- Lightbox (modale personnalisée pour cette page) -->
+    <div id="mediaLightbox" class="media-lightbox">
+        <button class="lightbox-close">&times;</button>
+        <img class="lightbox-media" src="" alt="">
+        <div class="lightbox-caption"></div>
+    </div>
+
     <script src="script.js" defer></script>
+    <script>
+        (function() {
+            // Initialisation de tous les carrousels
+            function initCarousel(carouselElement) {
+                const slides = Array.from(carouselElement.querySelectorAll('.carousel-slide'));
+                const indicators = Array.from(carouselElement.querySelectorAll('.indicator'));
+                const prevBtn = carouselElement.querySelector('.carousel-prev');
+                const nextBtn = carouselElement.querySelector('.carousel-next');
+                let current = 0;
+                let autoInterval = null;
+
+                function showSlide(index) {
+                    slides.forEach((slide, i) => {
+                        slide.classList.toggle('active', i === index);
+                        slide.setAttribute('aria-hidden', i === index ? 'false' : 'true');
+                    });
+                    indicators.forEach((ind, i) => {
+                        ind.classList.toggle('active', i === index);
+                    });
+                    current = index;
+                }
+
+                function next() { showSlide((current + 1) % slides.length); }
+                function prev() { showSlide((current - 1 + slides.length) % slides.length); }
+
+                function startAuto() {
+                    if (autoInterval) clearInterval(autoInterval);
+                    autoInterval = setInterval(next, 6000);
+                }
+                function stopAuto() { if (autoInterval) clearInterval(autoInterval); }
+
+                if (nextBtn) nextBtn.addEventListener('click', () => { stopAuto(); next(); startAuto(); });
+                if (prevBtn) prevBtn.addEventListener('click', () => { stopAuto(); prev(); startAuto(); });
+                indicators.forEach((ind, idx) => {
+                    ind.addEventListener('click', () => { stopAuto(); showSlide(idx); startAuto(); });
+                });
+                carouselElement.addEventListener('mouseenter', stopAuto);
+                carouselElement.addEventListener('mouseleave', startAuto);
+                showSlide(0);
+                startAuto();
+            }
+
+            // Lancer les carrousels
+            const carousels = document.querySelectorAll('.photo-carousel');
+            carousels.forEach(initCarousel);
+
+            // ------------------ LIGHTBOX AU CLIC SUR LES MÉDIAS ------------------
+            const lightbox = document.getElementById('mediaLightbox');
+            const lightboxMedia = lightbox.querySelector('.lightbox-media');
+            const lightboxCaption = lightbox.querySelector('.lightbox-caption');
+            const closeBtn = lightbox.querySelector('.lightbox-close');
+
+            function openLightbox(src, caption, isVideo = false) {
+                if (isVideo) {
+                    // Pour les vidéos, on crée un élément video dans la lightbox
+                    const videoEl = document.createElement('video');
+                    videoEl.controls = true;
+                    videoEl.autoplay = true;
+                    videoEl.style.maxWidth = '90%';
+                    videoEl.style.maxHeight = '80vh';
+                    const source = document.createElement('source');
+                    source.src = src;
+                    source.type = 'video/mp4';
+                    videoEl.appendChild(source);
+                    // Remplacer l'image par la vidéo
+                    lightboxMedia.style.display = 'none';
+                    const existingVideo = lightbox.querySelector('.lightbox-video');
+                    if (existingVideo) existingVideo.remove();
+                    videoEl.classList.add('lightbox-video');
+                    lightbox.appendChild(videoEl);
+                } else {
+                    // Image
+                    const existingVideo = lightbox.querySelector('.lightbox-video');
+                    if (existingVideo) existingVideo.remove();
+                    lightboxMedia.style.display = 'block';
+                    lightboxMedia.src = src;
+                }
+                lightboxCaption.textContent = caption;
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeLightbox() {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = '';
+                // Nettoyer la vidéo
+                const vid = lightbox.querySelector('.lightbox-video');
+                if (vid) { vid.pause(); vid.remove(); }
+                lightboxMedia.style.display = 'block';
+            }
+
+            // Ajouter l'événement click sur chaque média (image ou vidéo)
+            document.querySelectorAll('.slide-media-wrapper').forEach(wrapper => {
+                wrapper.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const mediaType = wrapper.getAttribute('data-media-type');
+                    const src = wrapper.getAttribute('data-src');
+                    const caption = wrapper.getAttribute('data-caption') || 'Document';
+                    if (!src) return;
+                    if (mediaType === 'video') {
+                        openLightbox(src, caption, true);
+                    } else {
+                        openLightbox(src, caption, false);
+                    }
+                });
+            });
+
+            if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) closeLightbox();
+            });
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && lightbox.classList.contains('active')) closeLightbox();
+            });
+        })();
+    </script>
 </body>
 </html>
