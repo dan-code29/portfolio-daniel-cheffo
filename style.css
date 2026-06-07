@@ -1578,3 +1578,50 @@ body.dark .modal-content {
         font-size: 1.2rem;
     }
 }
+
+// animation sans icones
+.about-stats {
+    display: flex;
+    gap: 2rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.stat {
+    text-align: center;
+    background: rgba(14, 165, 233, 0.15);
+    backdrop-filter: blur(4px);
+    padding: 1rem 1.5rem;
+    border-radius: 20px;
+    min-width: 140px;
+    transition: transform 0.3s;
+}
+
+.stat:hover {
+    transform: translateY(-5px);
+    background: rgba(14, 165, 233, 0.3);
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #fbbf24;
+    line-height: 1;
+    display: inline-block;
+}
+
+.stat-plus {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #fbbf24;
+    margin-left: 0.1rem;
+    display: inline-block;
+}
+
+.stat-label {
+    display: block;
+    font-size: 0.9rem;
+    color: #cbd5e1;
+    margin-top: 0.3rem;
+}

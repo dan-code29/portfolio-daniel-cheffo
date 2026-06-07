@@ -3,13 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <meta name="description" content="Portfolio professionnel de Neguem Cheffo Daniel – Expert en réseaux informatiques, électricité, sécurité électronique, énergie solaire, et solutions IoT. Découvrez mes projets, certifications et compétences techniques.">
-    <meta name="keywords" content="réseaux informatiques, électricité, sécurité électronique, énergie solaire, IoT, Arduino, Cisco CCNA, portfolio">
-    <meta name="author" content="Neguem Cheffo Daniel">
+    <meta name="description" content="Portfolio professionnel de Neguem Cheffo Daniel – Expert en réseaux informatiques, électricité, sécurité électronique, énergie solaire, et solutions IoT.">
     <title>Portfolio - Neguem Cheffo Daniel | Expert Tech</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <style>
-        /* ---------- BASE STYLES ---------- */
         * {
             margin: 0;
             padding: 0;
@@ -18,47 +16,54 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #f4f7fc;
-            color: #1e2a3e;
-            line-height: 1.6;
-            transition: background 0.3s, color 0.3s;
-        }
-
-        body.dark {
-            background: #0f172a;
+            background: #0a0f1a; /* fond très sombre pour les particules */
             color: #e2e8f0;
+            line-height: 1.6;
+            position: relative;
         }
 
-        .network-canvas {
+        /* Canvas particles - doit capter la souris */
+        #particles-js {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: -1;
-            pointer-events: none;
+            z-index: 0;
+            pointer-events: auto; /* important pour la réactivité */
         }
 
-        .theme-btn {
+        /* Tout le contenu au-dessus */
+        header, .container, footer, .language-btn, #backToTop {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Sections avec fond semi-transparent et flou */
+        section {
+            background: rgba(20, 30, 45, 0.9);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(14, 165, 233, 0.3);
+            transition: transform 0.2s;
+        }
+
+        .theme-btn { display: none; }
+
+        .language-btn {
             position: fixed;
             bottom: 20px;
-            right: 20px;
+            left: 20px;
             background: #0ea5e9;
             border: none;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
+            border-radius: 30px;
+            padding: 8px 16px;
             cursor: pointer;
-            font-size: 1.5rem;
             color: white;
+            font-weight: bold;
             z-index: 100;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-            transition: 0.2s;
-        }
-
-        .theme-btn:hover {
-            transform: scale(1.05);
-            background: #0284c7;
         }
 
         header {
@@ -78,14 +83,10 @@
         .main-nav a {
             text-decoration: none;
             font-weight: 600;
-            color: #0f172a;
+            color: #cbd5e1;
             padding: 0.5rem 1rem;
             border-radius: 30px;
             transition: 0.2s;
-        }
-
-        body.dark .main-nav a {
-            color: #cbd5e1;
         }
 
         .main-nav a:hover, .main-nav a.active {
@@ -111,10 +112,6 @@
             font-style: italic;
             max-width: 700px;
             margin: 0.5rem auto;
-            color: #334155;
-        }
-
-        body.dark .tagline {
             color: #94a3b8;
         }
 
@@ -132,23 +129,51 @@
             50% { opacity: 0; }
         }
 
+        .hero-buttons {
+            margin-top: 2rem;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            border-radius: 40px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+
+        .primary-btn {
+            background: #0ea5e9;
+            color: white;
+            border: none;
+        }
+
+        .primary-btn:hover {
+            background: #0284c7;
+            transform: translateY(-2px);
+        }
+
+        .secondary-btn {
+            background: transparent;
+            color: #0ea5e9;
+            border: 2px solid #0ea5e9;
+        }
+
+        .secondary-btn:hover {
+            background: #0ea5e9;
+            color: white;
+        }
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 2rem 1rem;
-        }
-
-        section {
-            background: white;
-            border-radius: 20px;
-            padding: 2rem;
-            margin-bottom: 3rem;
-            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05);
-            transition: background 0.3s;
-        }
-
-        body.dark section {
-            background: #1e293b;
         }
 
         h2 {
@@ -158,123 +183,86 @@
             padding-left: 1rem;
         }
 
+        /* À propos - stats */
+        .about-wrapper {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .about-text { flex: 2; }
+        .about-text p { margin-bottom: 1rem; }
+        .about-stats {
+            display: flex;
+            gap: 2rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+        .stat {
+            text-align: center;
+            background: rgba(227, 239, 218, 0.15);
+            backdrop-filter: blur(4px);
+            padding: 1rem 1.5rem;
+            border-radius: 20px;
+            min-width: 120px;
+            transition: transform 0.2s;
+        }
+        .stat:hover { transform: translateY(-5px); background: rgba(14,165,233,0.3); }
+        .stat-number { font-size: 2.5rem; font-weight: bold; color: #fac30d; display: block; line-height: 1; }
+        .stat-label { font-size: 0.9rem; color: #cbd5e1; }
+        .about-image img { max-width: 100%; border-radius: 20px; border: 1px solid rgba(14,165,233,0.3); }
+
+        /* Grille compétences */
         .grid-skills {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 1.5rem;
         }
-
         .card {
-            background: #f8fafc;
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(4px);
             padding: 1.5rem;
             border-radius: 20px;
             text-align: center;
             text-decoration: none;
             color: inherit;
-            transition: transform 0.2s, background 0.2s;
+            transition: transform 0.2s;
+            border: 1px solid rgba(14,165,233,0.2);
         }
+        .card:hover { transform: translateY(-5px); background: rgba(30,41,59,0.9); border-color: #0ea5e9; }
+        .card i { font-size: 2.5rem; color: #0ea5e9; margin-bottom: 1rem; }
+        .btn-more { display: inline-block; margin-top: 1rem; font-size: 0.9rem; color: #0ea5e9; font-weight: 600; }
 
-        body.dark .card {
-            background: #0f172a;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            background: #eef2ff;
-        }
-
-        .card i {
-            font-size: 2.5rem;
-            color: #0ea5e9;
-            margin-bottom: 1rem;
-        }
-
-        .card h3 {
-            margin-bottom: 0.5rem;
-        }
-
-        .btn-more {
-            display: inline-block;
-            margin-top: 1rem;
-            font-size: 0.9rem;
-            color: #0ea5e9;
-            font-weight: 600;
-        }
-
-        .stack-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .stack-item {
-            background: #f1f5f9;
+        /* Formations */
+        .stack-container, .diploma-grid { display: flex; flex-wrap: wrap; gap: 1rem; }
+        .stack-item, .diploma-card {
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(4px);
             padding: 0.5rem 1rem;
             border-radius: 30px;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        body.dark .stack-item {
-            background: #334155;
-        }
-
-        .item {
-            margin-bottom: 1.5rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid #e2e8f0;
-        }
-
-        .date {
-            font-weight: bold;
-            color: #0ea5e9;
-            display: inline-block;
-            width: 100px;
-        }
-
-        .diploma-grid {
-            display: flex;
-            gap: 1rem;
-            margin-top: 0.5rem;
-            flex-wrap: wrap;
-        }
-
-        .diploma-card {
-            background: #f1f5f9;
-            padding: 0.8rem 1.2rem;
-            border-radius: 15px;
-            text-decoration: none;
-            color: inherit;
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            transition: 0.2s;
         }
+        .item { margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid #334155; }
+        .date { font-weight: bold; color: #fbbf24; display: inline-block; width: 100px; }
 
-        .diploma-card:hover {
-            background: #e2e8f0;
-            transform: translateY(-2px);
-        }
-
-        /* ---------- CARROUSEL GÉNÉRIQUE ---------- */
+        /* CARROUSEL avec description */
         .carousel-container {
             position: relative;
             width: 100%;
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
             border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-            background: #000;
+            background: rgba(0,0,0,0.6);
         }
-
         .carousel-slides {
             position: relative;
             width: 100%;
             aspect-ratio: 16 / 9;
         }
-
         .carousel-slide {
             position: absolute;
             top: 0;
@@ -283,73 +271,69 @@
             height: 100%;
             opacity: 0;
             transition: opacity 0.5s ease;
-            object-fit: cover;
+            display: flex;
+            flex-direction: column;
             background: #111;
+        }
+        .carousel-slide.active { opacity: 1; z-index: 1; }
+        .carousel-media {
+            flex: 3;
             display: flex;
             align-items: center;
             justify-content: center;
+            background: #000;
+            overflow: hidden;
         }
-
-        .carousel-slide.active {
-            opacity: 1;
-            z-index: 1;
-        }
-
-        .carousel-slide img,
-        .carousel-slide video {
+        .carousel-media img, .carousel-media video {
             width: 100%;
             height: 100%;
             object-fit: contain;
-            background: #000;
             cursor: pointer;
         }
+        .carousel-caption {
+            background: rgba(0,0,0,0.7);
+            padding: 0.8rem;
+            text-align: center;
+            backdrop-filter: blur(5px);
+        }
+        .carousel-caption .project-year { color: #fbbf24; font-weight: bold; font-size: 0.9rem; }
+        .carousel-caption .project-title { font-size: 1rem; font-weight: bold; margin: 0.2rem 0; }
+        .carousel-caption .project-desc { font-size: 0.8rem; color: #cbd5e1; }
 
         .carousel-prev, .carousel-next {
             position: absolute;
-            top: 50%;
+            top: 45%;
             transform: translateY(-50%);
-            background: rgba(129, 123, 123, 0.6);
+            background: rgba(0,0,0,0.6);
             color: white;
             border: none;
-            padding: 12px 18px;
+            padding: 10px 15px;
             cursor: pointer;
             z-index: 20;
             border-radius: 50%;
             font-size: 1.2rem;
-            transition: 0.2s;
         }
-
-        .carousel-prev:hover, .carousel-next:hover {
-            background: rgba(0,0,0,0.9);
-        }
-
-        .carousel-prev { left: 15px; }
-        .carousel-next { right: 15px; }
-
+        .carousel-prev:hover, .carousel-next:hover { background: #0ea5e9; }
+        .carousel-prev { left: 10px; }
+        .carousel-next { right: 10px; }
         .carousel-indicators {
             position: absolute;
-            bottom: 15px;
+            bottom: 10px;
             left: 0;
             right: 0;
             display: flex;
             justify-content: center;
-            gap: 10px;
+            gap: 8px;
             z-index: 20;
         }
-
         .indicator {
-            width: 12px;
-            height: 12px;
+            width: 10px;
+            height: 10px;
             background: rgba(255,255,255,0.5);
             border-radius: 50%;
             cursor: pointer;
-            transition: 0.2s;
         }
-
-        .indicator.active {
-            background: #0ea5e9;
-            transform: scale(1.2);
-        }
+        .indicator.active { background: #0ea5e9; transform: scale(1.2); }
 
         /* Lightbox */
         .lightbox-modal {
@@ -365,74 +349,23 @@
             align-items: center;
             flex-direction: column;
         }
-
-        .lightbox-modal.active {
-            display: flex;
-        }
-
-        .lightbox-content {
-            max-width: 90vw;
-            max-height: 90vh;
-            position: relative;
-        }
-
-        .lightbox-media {
-            max-width: 90vw;
-            max-height: 85vh;
-            object-fit: contain;
-            border-radius: 8px;
-        }
-
-        .lightbox-close {
-            position: absolute;
-            top: -40px;
-            right: 0;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 2rem;
-            cursor: pointer;
-        }
-
-        .lightbox-nav {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-top: 1rem;
-        }
-
-        .lightbox-nav button {
-            background: rgba(255,255,255,0.2);
-            border: none;
-            padding: 10px 20px;
-            border-radius: 30px;
-            color: white;
-            font-size: 1rem;
-            cursor: pointer;
-        }
-
-        .lightbox-nav button:hover {
-            background: #0ea5e9;
-        }
+        .lightbox-modal.active { display: flex; }
+        .lightbox-content { max-width: 90vw; max-height: 90vh; position: relative; }
+        .lightbox-media { max-width: 90vw; max-height: 85vh; object-fit: contain; border-radius: 8px; }
+        .lightbox-close { position: absolute; top: -40px; right: 0; background: none; border: none; color: white; font-size: 2rem; cursor: pointer; }
+        .lightbox-nav { display: flex; justify-content: center; gap: 2rem; margin-top: 1rem; }
+        .lightbox-nav button { background: rgba(255,255,255,0.2); border: none; padding: 8px 16px; border-radius: 30px; color: white; cursor: pointer; }
+        .lightbox-nav button:hover { background: #0ea5e9; }
 
         footer {
             text-align: center;
             padding: 2rem;
-            background: #1e293b;
-            color: #cbd5e1;
+            background: rgba(30, 41, 59, 0.8);
+            backdrop-filter: blur(8px);
             margin-top: 2rem;
         }
-
-        .contact-info a {
-            color: #0ea5e9;
-            text-decoration: none;
-        }
-
-        .copyright {
-            margin-top: 1rem;
-            font-size: 0.8rem;
-        }
-
+        .contact-info a { color: #0ea5e9; text-decoration: none; }
+        .copyright { margin-top: 1rem; font-size: 0.8rem; }
         #backToTop {
             position: fixed;
             bottom: 80px;
@@ -450,157 +383,128 @@
             font-size: 1.2rem;
             z-index: 100;
         }
-
-        #backToTop.show {
-            display: flex;
-        }
+        #backToTop.show { display: flex; }
 
         @media (max-width: 768px) {
-            .carousel-prev, .carousel-next { padding: 8px 12px; font-size: 1rem; }
-            .indicator { width: 8px; height: 8px; }
-            h2 { font-size: 1.5rem; }
+            .carousel-caption .project-title { font-size: 0.8rem; }
+            .stat-number { font-size: 1.8rem; }
+            .about-wrapper { flex-direction: column; }
         }
     </style>
 </head>
 <body>
-    <canvas id="networkCanvas" class="network-canvas"></canvas>
-    <button id="dark-mode-toggle" class="theme-btn" aria-label="Changer le thème (clair/sombre)">
-        <i class="fas fa-moon"></i>
-    </button>
-    <button id="language-toggle" class="language-btn" aria-label="Toggle Language (FR/EN)">
-        <span id="lang-text">EN</span>
-    </button>
+    <div id="particles-js"></div>
+    <button id="language-toggle" class="language-btn"><span id="lang-text">EN</span></button>
 
     <header>
         <nav class="main-nav">
             <ul>
-                <li><a href="index.html" class="active" data-i18n="nav.home">Accueil</a></li>
-                <li><a href="expertise-reseaux.html" data-i18n="nav.networks">Réseaux</a></li>
-                <li><a href="expertise-electricite.html" data-i18n="nav.electricity">Électricité & Domotique</a></li>
-                <li><a href="expertise-securite.html" data-i18n="nav.security">Sécurité électronique</a></li>
+                <li><a href="index.html" class="active">Accueil</a></li>
+                <li><a href="expertise-reseaux.html">Réseaux</a></li>
+                <li><a href="expertise-electricite.html">Électricité & Domotique</a></li>
+                <li><a href="expertise-securite.html">Sécurité électronique</a></li>
             </ul>
         </nav>
         <img src="assets/images/ma photo de profil.jpg" alt="Daniel Neguem" class="profile-img" loading="lazy">
         <h1>Neguem Cheffo Daniel</h1>
-        <p class="tagline" data-i18n="header.tagline">"Fusionner l'énergie, les réseaux et l'intelligence pour transformer vos bâtiments en infrastructures connectées, performantes et sécurisées."</p>
-        <p class="typewriter-container"><span data-i18n="header.expert_in">Expert en :</span> <span id="typewriter-text"></span><span class="cursor">|</span></p>
+        <p class="tagline">"Fusionner l'énergie, les réseaux et l'intelligence pour transformer vos bâtiments en infrastructures connectées, performantes et sécurisées."</p>
+        <p class="typewriter-container">Expert en : <span id="typewriter-text"></span><span class="cursor">|</span></p>
+        <div class="hero-buttons">
+            <a href="assets/documents/CV_Neguem_Cheffo_Daniel.pdf" download class="btn primary-btn"><i class="fas fa-download"></i> Télécharger mon CV</a>
+            <a href="#projects" class="btn secondary-btn">Découvrir mes projets <i class="fas fa-arrow-right"></i></a>
+        </div>
     </header>
 
     <div class="container">
-        <!-- Domaines d'expertise -->
+        <section id="about">
+            <h2>À propos</h2>
+            <div class="about-wrapper">
+                <div class="about-text">
+                    <p>Passionné par les technologies et l'innovation, je suis technicien spécialisé en <strong>réseaux informatiques, électricité,Domotique et sécurité électronique </strong>. Mon parcours m'a permis d'acquérir une expertise polyvalente allant de l'installation de systèmes électriques à la sécurisation des infrastructures réseau.</p>
+                    <p>J'ai eu l'opportunité de travailler sur des projets variés au Cameroun et lors de mon programme  <strong>ATEAM CYDEP</strong> en Afrique du Sud. Ces expériences m'ont permis de développer mes compétences en <strong>support technique,électricité ,équipements connectés, câblage structuré et déploiement de solutions de sécurité électronique</strong>.</p>
+                    <p>Je suis constamment à la recherche de nouvelles opportunités pour appliquer mes compétences et contribuer à des projets innovants dans les domaines de l'énergie, des réseaux et de la sécurité.</p>
+                <div class="about-stats">
+    <div class="stat">
+        <div class="stat-number" data-count="20">0+</div>
+        <span class="stat-label">Projets réalisés</span>
+    </div>
+    <div class="stat">
+        <div class="stat-number" data-count="6">30+</div>
+        <span class="stat-label">Clients Satisfait</span>
+    </div>
+    <div class="stat">
+        <div class="stat-number" data-count="3">0+</div>
+        <span class="stat-label">Années d'expérience</span>
+    </div>
+</div>
+                </div>
+                <div class="about-image"><img src="assets/images/aboutme.jpg" alt="Daniel Neguem en action"></div>
+            </div>
+        </section>
+
         <section>
             <h2>Mes Domaines d'Expertise</h2>
             <div class="grid-skills">
-                <a href="expertise-reseaux.html" class="card">
-                    <i class="fas fa-network-wired"></i>
-                    <h3>Réseaux Informatiques</h3>
-                    <span class="btn-more">Voir les détails</span>
-                </a>
-                <a href="expertise-electricite.html" class="card">
-                    <i class="fas fa-bolt"></i>
-                    <h3>Électricité et domotique</h3>
-                    <span class="btn-more">Voir les détails</span>
-                </a>
-                <a href="expertise-securite.html" class="card">
-                    <i class="fas fa-shield-alt"></i>
-                    <h3>Sécurité Électronique</h3>
-                    <span class="btn-more">Voir les détails</span>
-                </a>
+                <a href="expertise-reseaux.html" class="card"><i class="fas fa-network-wired"></i><h3>Réseaux Informatiques</h3><span class="btn-more">Voir les détails</span></a>
+                <a href="expertise-electricite.html" class="card"><i class="fas fa-bolt"></i><h3>Électricité & Domotique</h3><span class="btn-more">Voir les détails</span></a>
+                <a href="expertise-securite.html" class="card"><i class="fas fa-shield-alt"></i><h3>Sécurité Électronique</h3><span class="btn-more">Voir les détails</span></a>
             </div>
         </section>
 
-        <!-- Certifications -->
         <section>
-            <h3>Diplomes & Certifications en cours</h3>
-            <div class="stack-container">
-                <div class="stack-item"><i class="fas fa-network-wired"></i><span>Cisco CCNA 200-301</span><small>Prévu 2026</small></div>
-                <div class="stack-item"><i class="fas fa-graduation-cap"></i><span>Licence Réseaux et Sécurité</span><small>Prévu 2027</small></div>
-            </div>
-        </section>
-
-        <!-- Formation & Diplômes -->
-        <section>
-            <h2>Formation & Diplômes</h2>
-            <div class="item">
-                <span class="date">2026</span>
-                <h4>Programme CYDEP - SCC Stephanopark</h4>
+            <h2>Formations Diplomes & Experiences</h2>
+            <div class="item"><span class="date">2026</span><h4>Programme CYDEP - SCC Stephanopark</h4>
                 <div class="diploma-grid">
                     <a href="vut-details.html" class="diploma-card"><i class="fas fa-university"></i>Management (VUT)</a>
                     <a href="bible-details.html" class="diploma-card"><i class="fas fa-bible"></i>Études Bibliques</a>
                     <a href="slabvest-details.html" class="diploma-card"><i class="fas fa-tools"></i>Work</a>
                     <a href="loisir-details.html" class="diploma-card"><i class="fas fa-tools"></i>Activités/Loisir/divertissement</a>
                 </div>
-            </div>
-            <div class="item">
-                <span class="date">2024-2025</span>
-                <h4>Technicien vidéosurveillance et contrôle d'accès</h4>
-                <p>ETS Elec-ADDA - Yaoundé, Cameroun</p>
-            </div>
-            <div class="item">
-                <span class="date">2022-2025</span>
-                <h4>BTS Électricité et Énergies Renouvelables</h4>
-                <p>Institut supérieur Hintel - Yaoundé, Cameroun</p>
-            </div>
-            <div class="item">
-                <span class="date">2019</span>
-                <h4>Baccalauréat Scientifique</h4>
-                <p>Collège Excellence Plus - Yaoundé, Cameroun</p>
-            </div>
+
+            <div class="item"><span class="date">2024-2025</span><h4>Technicien vidéosurveillance et contrôle d'accès</h4><p>ETS Elec-ADDA - Yaoundé, Cameroun</p></div>
+            <div class="item"><span class="date">2025</span><h4>BTS Informatique Industrielle et Automatisme</h4><p>Institut supérieur Hintel - Yaoundé, Cameroun</p></div>
         </section>
 
-        <!-- Carrousel 1 : Réalisations & Projets -->
-        <section>
+        <section id="projects">
             <h2>Réalisations & Projets</h2>
             <div class="carousel-container" id="carousel-projets">
                 <div class="carousel-slides">
-                    <div class="carousel-slide active" data-type="image" data-src="assets/images/videosurveillance1.jpg" data-title="Installation Vidéosurveillance IP">
-                        <img src="assets/images/realisation1.jpg" alt="Vidéosurveillance">
+                    <!-- Slide 1 -->
+                    <div class="carousel-slide active" data-type="image" data-src="assets/images/realisation1.jpg" data-year="2024" data-title="Installation Vidéosurveillance IP" data-desc="Déploiement de 20 caméras Hikvision, NVR, accès mobile et stockage centralisé.">
+                        <div class="carousel-media"><img src="assets/images/realisation1.jpg" alt="Vidéosurveillance"></div>
+                        <div class="carousel-caption">
+                            <span class="project-year">2024</span>
+                            <div class="project-title">Installation Vidéosurveillance IP</div>
+                            <div class="project-desc">Déploiement de 20 caméras Hikvision, NVR, accès mobile et stockage centralisé.</div>
+                        </div>
                     </div>
-                    <div class="carousel-slide" data-type="video" data-src="assets/videos/videosurveillance.mp4" data-title="Démo caméras">
-                        <video muted><source src="assets/videos/videosurveillance.mp4" type="video/mp4"></video>
+                    <!-- Slide 2 -->
+                    <div class="carousel-slide" data-type="video" data-src="assets/videos/videosurveillance.mp4" data-year="2024" data-title="Démo caméras IP" data-desc="Test de vision nocturne et analyse vidéo en temps réel.">
+                        <div class="carousel-media"><video muted><source src="assets/videos/videosurveillance.mp4" type="video/mp4"></video></div>
+                        <div class="carousel-caption">
+                            <span class="project-year">2024</span>
+                            <div class="project-title">Câblage caméras IP</div>
+                            <div class="project-desc">Câblage et configuration de caméras IP pour une surveillance efficace.</div>
+                        </div>
                     </div>
-                    <div class="carousel-slide" data-type="image" data-src="assets/images/reseau.jpg" data-title="Câblage Baie de Brassage">
-                        <img src="assets/images/reseau.jpg" alt="Réseau">
+                    <!-- Slide 3 -->
+                    <div class="carousel-slide" data-type="image" data-src="assets/images/reseau.jpg" data-year="2023" data-title="Câblage Baie de Brassage" data-desc="Brassage et certification de 150 points réseau Cat6a.">
+                        <div class="carousel-media"><img src="assets/images/reseau.jpg" alt="Réseau"></div>
+                        <div class="carousel-caption">
+                            <span class="project-year">2023</span>
+                            <div class="project-title">Câblage Baie de Brassage</div>
+                            <div class="project-desc">Brassage et certification de 48 points réseau Cat6a.</div>
+                        </div>
                     </div>
-                    <div class="carousel-slide" data-type="video" data-src="assets/videos/reseau.mp4" data-title="Test réseau">
-                        <video muted><source src="assets/videos/fencerealisation1.mp4" type="video/mp4"></video>
+                    <!-- Slide 4 -->
+                    <div class="carousel-slide" data-type="image" data-src="assets/images/electricite.jpg" data-year="2025" data-title="Installation Domotique" data-desc="Contrôle centralisé de l'éclairage, volets et chauffage.">
+                        <div class="carousel-media"><img src="assets/images/aboutme.jpg" alt="Domotique"></div>
+                        <div class="carousel-caption">
+                            <span class="project-year">2025</span>
+                            <div class="project-title">Soudure</div>
+                            <div class="project-desc">.</div>
+                        </div>
                     </div>
-                    <div class="carousel-slide" data-type="image" data-src="assets/images/photo_CYDEP.jpg" data-title="Programme CYDEP">
-                        <img src="assets/images/projet1-petit.png" alt="CYDEP">
-                    </div>
-                    <div class="carousel-slide" data-type="image" data-src="assets/images/photo_CYDEP.jpg" data-title="Programme CYDEP">
-                        <img src="assets/images/electriciterealisation1.jpg" alt="CYDEP">
-                    </div>
-                    <div class="carousel-slide" data-type="image" data-src="assets/images/photo_CYDEP.jpg" data-title="Programme CYDEP">
-                        <img src="assets/images/cameraRealisation2.jpg" alt="CYDEP">
-                    </div>
-                    <div class="carousel-slide" data-type="image" data-src="assets/images/photo_CYDEP.jpg" data-title="Programme CYDEP">
-                        <img src="assets/images/cydpwork.jpg" alt="CYDEP">
-                    </div>
-                </div>
-                <button class="carousel-prev"><i class="fas fa-chevron-left"></i></button>
-                <button class="carousel-next"><i class="fas fa-chevron-right"></i></button>
-                <div class="carousel-indicators"></div>
-            </div>
-        </section>
-
-       
-        <!-- Carrousel 3 : Loisirs & Divertissement -->
-        <section>
-            <h2>Loisirs & Divertissement</h2>
-            <div class="carousel-container" id="carousel-loisirs">
-                <div class="carousel-slides">
-                    <div class="carousel-slide active" data-type="image" data-src="assets/images/loisir0.jpg" data-title="Activite sportive"><img src="assets/images/loisir0.jpg" alt="SQUASH"></div>
-                    <div class="carousel-slide" data-type="image" data-src="assets/images/loisir01.jpg" data-title="Activités Sportive"><img src="assets/images/loisir01.jpg" alt="squash"></div>
-                    <div class="carousel-slide" data-type="image" data-src="assets/images/loisir1.jpg" data-title="jeux de sociéte"><img src="assets/images/loisir1.jpg" alt="jeux de sociéte"></div>
-                    <div class="carousel-slide" data-type="image" data-src="assets/images/loisir2.jpg" data-title="jeux de sociéte"><img src="assets/images/loisir2.jpg" alt="jeux de sociéte"></div>
-                    <div class="carousel-slide" data-type="image" data-src="assets/images/loisir3Media.jpg" data-title="Medias"><img src="assets/images/loisir3Media.jpg" alt="Medias"></div>
-                    <div class="carousel-slide" data-type="image" data-src="assets/images/loisir4Media.jpg" data-title="Medias"><img src="assets/images/loisir4Media.jpg" alt="Medias"></div>
-
-                    <div class="carousel-slide" data-type="image" data-src="assets/images/loisir5.jpg" data-title="Volontariat"><img src="assets/images/loisir5.jpg" alt="Volontariat"></div>
-                    <div class="carousel-slide" data-type="image" data-src="assets/images/loisir6.jpg" data-title="Fitness"><img src="assets/images/loisir6.jpg" alt="Fitness"></div>
-                    <div class="carousel-slide" data-type="image" data-src="assets/images/loisir9.jpg" data-title="Media"><img src="assets/images/loisir9.jpg" alt="buk live cameroun"></div>
-                    <div class="carousel-slide" data-type="image" data-src="assets/images/loisir91.jpg" data-title="Medias"><img src="assets/images/loisir91.jpg" alt="Medias"></div>
                 </div>
                 <button class="carousel-prev"><i class="fas fa-chevron-left"></i></button>
                 <button class="carousel-next"><i class="fas fa-chevron-right"></i></button>
@@ -609,244 +513,249 @@
         </section>
     </div>
 
-    <!-- Lightbox (zoom) -->
     <div id="globalLightbox" class="lightbox-modal">
         <div class="lightbox-content">
             <button class="lightbox-close">&times;</button>
             <img class="lightbox-media" id="lightboxMedia" style="display:none;">
             <video class="lightbox-media" id="lightboxVideo" controls style="display:none;"></video>
-            <div class="lightbox-nav">
-                <button id="lightboxPrev"><i class="fas fa-chevron-left"></i> Précédent</button>
-                <button id="lightboxNext">Suivant <i class="fas fa-chevron-right"></i></button>
-            </div>
+            <div class="lightbox-nav"><button id="lightboxPrev"><i class="fas fa-chevron-left"></i> Précédent</button><button id="lightboxNext">Suivant <i class="fas fa-chevron-right"></i></button></div>
         </div>
     </div>
 
     <footer>
         <div class="contact-info">
             <p><i class="fas fa-envelope"></i> <a href="mailto:dancheffo29@gmail.com">dancheffo29@gmail.com</a></p>
-            <p>
-                <i class="fas fa-phone"></i> <a href="tel:+237697654023">+237 697 654 023</a> | 
-                <a href="https://wa.me/237697654023" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a> | 
-                <a href="https://t.me/+237697654023" target="_blank"><i class="fab fa-telegram"></i> Telegram</a> | 
-                <a href="https://www.linkedin.com/in/daniel-cheffo-tech" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
-            </p>
+            <p><i class="fas fa-phone"></i> <a href="tel:+237697654023">+237 697 654 023</a> | <a href="https://wa.me/237697654023" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a> | <a href="https://t.me/+237697654023" target="_blank"><i class="fab fa-telegram"></i> Telegram</a> | <a href="https://www.linkedin.com/in/daniel-cheffo-tech" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a></p>
         </div>
         <p class="copyright">&copy; 2026 - Neguem Cheffo Daniel</p>
     </footer>
-
-    <button id="backToTop" title="Retour en haut"><i class="fas fa-arrow-up"></i></button>
+    <button id="backToTop"><i class="fas fa-arrow-up"></i></button>
 
     <script>
-        (function() {
-            // ---------- INITIALISATION DES CARROUSELS ----------
-            const carouselIds = ['carousel-projets', 'carousel-galerie', 'carousel-loisirs'];
-            const carouselData = {};
-
-            function initCarousel(containerId) {
-                const container = document.getElementById(containerId);
-                if (!container) return;
-
-                const slides = Array.from(container.querySelectorAll('.carousel-slide'));
-                const prevBtn = container.querySelector('.carousel-prev');
-                const nextBtn = container.querySelector('.carousel-next');
-                const indicatorsContainer = container.querySelector('.carousel-indicators');
-                if (slides.length === 0) return;
-
-                indicatorsContainer.innerHTML = '';
-                slides.forEach((_, idx) => {
-                    const dot = document.createElement('span');
-                    dot.classList.add('indicator');
-                    if (idx === 0) dot.classList.add('active');
-                    dot.addEventListener('click', () => {
-                        stopAutoPlay(containerId);
-                        showSlide(containerId, idx);
-                        startAutoPlay(containerId);
-                    });
-                    indicatorsContainer.appendChild(dot);
-                });
-
-                const mediaItems = slides.map(slide => {
-                    const img = slide.querySelector('img');
-                    const video = slide.querySelector('video');
-                    return {
-                        type: video ? 'video' : 'image',
-                        src: video ? (video.querySelector('source')?.src || video.src) : (img ? img.src : ''),
-                        title: slide.dataset.title || 'Média'
-                    };
-                });
-                carouselData[containerId] = {
-                    items: mediaItems,
-                    currentIndex: 0,
-                    intervalId: null,
-                    slides: slides,
-                    indicators: indicatorsContainer.querySelectorAll('.indicator')
-                };
-
-                function showSlide(index) {
-                    const data = carouselData[containerId];
-                    if (!data) return;
-                    const newIndex = (index + data.slides.length) % data.slides.length;
-                    data.slides.forEach((slide, i) => slide.classList.toggle('active', i === newIndex));
-                    data.indicators.forEach((dot, i) => dot.classList.toggle('active', i === newIndex));
-                    data.currentIndex = newIndex;
+        // ========== PARTICLES.JS AVEC RÉACTIVITÉ SOURIS AMÉLIORÉE ==========
+        particlesJS('particles-js', {
+            "particles": {
+                "number": { "value": 100, "density": { "enable": true, "value_area": 800 } },
+                "color": { "value": ["#0ea5e9", "#fbbf24", "#06b6d4", "#ffffff"] },
+                "shape": { "type": "circle" },
+                "opacity": { "value": 0.7, "random": true, "anim": { "enable": true, "speed": 0.8, "opacity_min": 0.2 } },
+                "size": { "value": 3, "random": true, "anim": { "enable": true, "speed": 2, "size_min": 0.5 } },
+                "line_linked": { "enable": true, "distance": 140, "color": "#0ea5e9", "opacity": 0.3, "width": 1 },
+                "move": { "enable": true, "speed": 2.5, "direction": "none", "random": true, "straight": false, "out_mode": "out", "bounce": false }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": { "enable": true, "mode": "repulse" },
+                    "onclick": { "enable": true, "mode": "push" },
+                    "resize": true
+                },
+                "modes": {
+                    "repulse": { "distance": 120, "duration": 0.5 },
+                    "push": { "particles_nb": 10 }
                 }
+            },
+            "retina_detect": true
+        });
 
-                function nextSlide() { showSlide(carouselData[containerId].currentIndex + 1); }
-                function prevSlide() { showSlide(carouselData[containerId].currentIndex - 1); }
-                function startAutoPlay() {
-                    if (carouselData[containerId].intervalId) clearInterval(carouselData[containerId].intervalId);
-                    carouselData[containerId].intervalId = setInterval(() => nextSlide(), 5000);
-                }
-                function stopAutoPlay() {
-                    if (carouselData[containerId].intervalId) {
-                        clearInterval(carouselData[containerId].intervalId);
-                        carouselData[containerId].intervalId = null;
-                    }
-                }
+        // ========== CARROUSEL AVEC DESCRIPTIONS ==========
+        const carouselData = {};
+        function initCarousel(containerId) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+            const slides = Array.from(container.querySelectorAll('.carousel-slide'));
+            const prevBtn = container.querySelector('.carousel-prev');
+            const nextBtn = container.querySelector('.carousel-next');
+            const indicatorsContainer = container.querySelector('.carousel-indicators');
+            if (slides.length === 0) return;
 
-                if (prevBtn) prevBtn.addEventListener('click', () => { stopAutoPlay(); prevSlide(); startAutoPlay(); });
-                if (nextBtn) nextBtn.addEventListener('click', () => { stopAutoPlay(); nextSlide(); startAutoPlay(); });
-                container.addEventListener('mouseenter', stopAutoPlay);
-                container.addEventListener('mouseleave', startAutoPlay);
-
-                slides.forEach((slide, idx) => {
-                    const media = slide.querySelector('img, video');
-                    if (media) {
-                        media.addEventListener('click', (e) => {
-                            e.stopPropagation();
-                            openLightboxForCarousel(containerId, idx);
-                        });
-                    }
+            indicatorsContainer.innerHTML = '';
+            slides.forEach((_, idx) => {
+                const dot = document.createElement('span');
+                dot.classList.add('indicator');
+                if (idx === 0) dot.classList.add('active');
+                dot.addEventListener('click', () => {
+                    stopAutoPlay(containerId);
+                    showSlide(containerId, idx);
+                    startAutoPlay(containerId);
                 });
-
-                showSlide(0);
-                startAutoPlay();
-                window[`showSlide_${containerId}`] = showSlide;
-            }
-
-            // ---------- LIGHTBOX ----------
-            let activeLightboxCarouselId = null;
-            let activeLightboxIndex = 0;
-
-            function openLightboxForCarousel(carouselId, index) {
-                const data = carouselData[carouselId];
-                if (!data || !data.items[index]) return;
-                activeLightboxCarouselId = carouselId;
-                activeLightboxIndex = index;
-                updateLightboxMedia(data.items[index]);
-                const modal = document.getElementById('globalLightbox');
-                modal.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            }
-
-            function updateLightboxMedia(item) {
-                const imgEl = document.getElementById('lightboxMedia');
-                const videoEl = document.getElementById('lightboxVideo');
-                if (item.type === 'image') {
-                    imgEl.style.display = 'block';
-                    videoEl.style.display = 'none';
-                    videoEl.pause();
-                    imgEl.src = item.src;
-                    imgEl.alt = item.title;
-                } else {
-                    imgEl.style.display = 'none';
-                    videoEl.style.display = 'block';
-                    videoEl.innerHTML = `<source src="${item.src}" type="video/mp4">`;
-                    videoEl.load();
-                    videoEl.play().catch(() => {});
-                }
-            }
-
-            function navigateLightbox(delta) {
-                if (!activeLightboxCarouselId) return;
-                const data = carouselData[activeLightboxCarouselId];
-                if (!data) return;
-                let newIndex = activeLightboxIndex + delta;
-                if (newIndex < 0) newIndex = data.items.length - 1;
-                if (newIndex >= data.items.length) newIndex = 0;
-                activeLightboxIndex = newIndex;
-                updateLightboxMedia(data.items[newIndex]);
-                const syncShow = window[`showSlide_${activeLightboxCarouselId}`];
-                if (syncShow) syncShow(newIndex);
-            }
-
-            // ---------- AUTRES FONCTIONS (typewriter, dark mode, backToTop) ----------
-            function initTypewriter() {
-                const el = document.getElementById('typewriter-text');
-                if (!el) return;
-                const words = ["Réseaux Informatiques", "Électricité et Domotique", "Sécurité Électronique", "Énergie Solaire"];
-                let wi = 0, ci = 0, del = false;
-                let speed = 100;
-                function type() {
-                    const cur = words[wi];
-                    if (del) {
-                        el.textContent = cur.substring(0, ci - 1);
-                        ci--;
-                        speed = 50;
-                    } else {
-                        el.textContent = cur.substring(0, ci + 1);
-                        ci++;
-                        speed = 100;
-                    }
-                    if (!del && ci === cur.length) { del = true; speed = 2000; }
-                    else if (del && ci === 0) { del = false; wi = (wi + 1) % words.length; speed = 500; }
-                    setTimeout(type, speed);
-                }
-                type();
-            }
-
-            function initDarkMode() {
-                const btn = document.getElementById('dark-mode-toggle');
-                if (!btn) return;
-                if (localStorage.getItem('darkMode') === 'true') document.body.classList.add('dark');
-                btn.addEventListener('click', () => {
-                    document.body.classList.toggle('dark');
-                    localStorage.setItem('darkMode', document.body.classList.contains('dark'));
-                    const icon = btn.querySelector('i');
-                    if (icon) icon.classList.toggle('fa-moon');
-                    if (icon) icon.classList.toggle('fa-sun');
-                });
-            }
-
-            function initBackToTop() {
-                const btn = document.getElementById('backToTop');
-                if (!btn) return;
-                window.addEventListener('scroll', () => btn.classList.toggle('show', window.scrollY > 300));
-                btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-            }
-
-            // Désactiver le canvas (allègement)
-            const canvas = document.getElementById('networkCanvas');
-            if (canvas) canvas.style.display = 'none';
-
-            // Lancement
-            document.addEventListener('DOMContentLoaded', () => {
-                carouselIds.forEach(id => initCarousel(id));
-                initTypewriter();
-                initDarkMode();
-                initBackToTop();
-
-                const modal = document.getElementById('globalLightbox');
-                const closeBtn = modal.querySelector('.lightbox-close');
-                const prevLight = document.getElementById('lightboxPrev');
-                const nextLight = document.getElementById('lightboxNext');
-                closeBtn.addEventListener('click', () => {
-                    modal.classList.remove('active');
-                    document.body.style.overflow = 'auto';
-                    const vid = document.getElementById('lightboxVideo');
-                    if (vid) vid.pause();
-                });
-                prevLight.addEventListener('click', () => navigateLightbox(-1));
-                nextLight.addEventListener('click', () => navigateLightbox(1));
-                modal.addEventListener('click', (e) => { if (e.target === modal) closeBtn.click(); });
-                document.addEventListener('keydown', (e) => {
-                    if (e.key === 'Escape' && modal.classList.contains('active')) closeBtn.click();
-                    if (e.key === 'ArrowLeft' && modal.classList.contains('active')) navigateLightbox(-1);
-                    if (e.key === 'ArrowRight' && modal.classList.contains('active')) navigateLightbox(1);
-                });
+                indicatorsContainer.appendChild(dot);
             });
-        })();
+
+            const mediaItems = slides.map(slide => ({
+                type: slide.dataset.type,
+                src: slide.dataset.src,
+                year: slide.dataset.year,
+                title: slide.dataset.title,
+                desc: slide.dataset.desc
+            }));
+
+            carouselData[containerId] = {
+                items: mediaItems,
+                currentIndex: 0,
+                intervalId: null,
+                slides: slides,
+                indicators: indicatorsContainer.querySelectorAll('.indicator')
+            };
+
+            function showSlide(index) {
+                const data = carouselData[containerId];
+                if (!data) return;
+                const newIndex = (index + data.slides.length) % data.slides.length;
+                data.slides.forEach((slide, i) => {
+                    slide.classList.toggle('active', i === newIndex);
+                });
+                data.indicators.forEach((dot, i) => dot.classList.toggle('active', i === newIndex));
+                data.currentIndex = newIndex;
+            }
+
+            function nextSlide() { showSlide(carouselData[containerId].currentIndex + 1); }
+            function prevSlide() { showSlide(carouselData[containerId].currentIndex - 1); }
+            function startAutoPlay() {
+                if (carouselData[containerId].intervalId) clearInterval(carouselData[containerId].intervalId);
+                carouselData[containerId].intervalId = setInterval(() => nextSlide(), 6000);
+            }
+            function stopAutoPlay() {
+                if (carouselData[containerId].intervalId) {
+                    clearInterval(carouselData[containerId].intervalId);
+                    carouselData[containerId].intervalId = null;
+                }
+            }
+
+            if (prevBtn) prevBtn.addEventListener('click', () => { stopAutoPlay(); prevSlide(); startAutoPlay(); });
+            if (nextBtn) nextBtn.addEventListener('click', () => { stopAutoPlay(); nextSlide(); startAutoPlay(); });
+            container.addEventListener('mouseenter', stopAutoPlay);
+            container.addEventListener('mouseleave', startAutoPlay);
+
+            slides.forEach((slide, idx) => {
+                const media = slide.querySelector('.carousel-media img, .carousel-media video');
+                if (media) {
+                    media.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        openLightboxForCarousel(containerId, idx);
+                    });
+                }
+            });
+
+            showSlide(0);
+            startAutoPlay();
+            window[`showSlide_${containerId}`] = showSlide;
+        }
+
+        // Lightbox
+        let activeLightboxCarouselId = null, activeLightboxIndex = 0;
+        function openLightboxForCarousel(carouselId, index) {
+            const data = carouselData[carouselId];
+            if (!data || !data.items[index]) return;
+            activeLightboxCarouselId = carouselId;
+            activeLightboxIndex = index;
+            updateLightboxMedia(data.items[index]);
+            document.getElementById('globalLightbox').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        function updateLightboxMedia(item) {
+            const imgEl = document.getElementById('lightboxMedia');
+            const videoEl = document.getElementById('lightboxVideo');
+            if (item.type === 'image') {
+                imgEl.style.display = 'block';
+                videoEl.style.display = 'none';
+                videoEl.pause();
+                imgEl.src = item.src;
+            } else {
+                imgEl.style.display = 'none';
+                videoEl.style.display = 'block';
+                videoEl.innerHTML = `<source src="${item.src}" type="video/mp4">`;
+                videoEl.load();
+                videoEl.play().catch(() => {});
+            }
+        }
+        function navigateLightbox(delta) {
+            if (!activeLightboxCarouselId) return;
+            const data = carouselData[activeLightboxCarouselId];
+            if (!data) return;
+            let newIndex = activeLightboxIndex + delta;
+            if (newIndex < 0) newIndex = data.items.length - 1;
+            if (newIndex >= data.items.length) newIndex = 0;
+            activeLightboxIndex = newIndex;
+            updateLightboxMedia(data.items[newIndex]);
+            const sync = window[`showSlide_${activeLightboxCarouselId}`];
+            if (sync) sync(newIndex);
+        }
+
+        // Typewriter
+        function initTypewriter() {
+            const el = document.getElementById('typewriter-text');
+            if (!el) return;
+            const words = ["Réseaux Informatiques", "Électricité et Domotique", "Sécurité Électronique", "Énergie Solaire"];
+            let wi = 0, ci = 0, del = false, speed = 100;
+            function type() {
+                const cur = words[wi];
+                if (del) { el.textContent = cur.substring(0, ci-1); ci--; speed = 50; }
+                else { el.textContent = cur.substring(0, ci+1); ci++; speed = 100; }
+                if (!del && ci === cur.length) { del = true; speed = 2000; }
+                else if (del && ci === 0) { del = false; wi = (wi+1)%words.length; speed = 500; }
+                setTimeout(type, speed);
+            }
+            type();
+        }
+
+        function initBackToTop() {
+            const btn = document.getElementById('backToTop');
+            if (!btn) return;
+            window.addEventListener('scroll', () => btn.classList.toggle('show', window.scrollY > 300));
+            btn.addEventListener('click', () => window.scrollTo({ top:0, behavior:'smooth' }));
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initCarousel('carousel-projets');
+            initTypewriter();
+            initBackToTop();
+
+            const modal = document.getElementById('globalLightbox');
+            const closeBtn = modal.querySelector('.lightbox-close');
+            const prevLight = document.getElementById('lightboxPrev');
+            const nextLight = document.getElementById('lightboxNext');
+            closeBtn.addEventListener('click', () => { modal.classList.remove('active'); document.body.style.overflow = 'auto'; const vid = document.getElementById('lightboxVideo'); if(vid) vid.pause(); });
+            prevLight.addEventListener('click', () => navigateLightbox(-1));
+            nextLight.addEventListener('click', () => navigateLightbox(1));
+            modal.addEventListener('click', (e) => { if(e.target === modal) closeBtn.click(); });
+            document.addEventListener('keydown', (e) => {
+                if(e.key === 'Escape' && modal.classList.contains('active')) closeBtn.click();
+                if(e.key === 'ArrowLeft' && modal.classList.contains('active')) navigateLightbox(-1);
+                if(e.key === 'ArrowRight' && modal.classList.contains('active')) navigateLightbox(1);
+            });
+        });
+function animateStats() {
+    const statElements = document.querySelectorAll('.stat-number');
+    if (!statElements.length) return;
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const el = entry.target;
+                const target = parseInt(el.getAttribute('data-count'));
+                let current = 0;
+                const increment = target / 150;
+                const updateCounter = () => {
+                    current += increment;
+                    if (current < target) {
+                        el.innerText = Math.floor(current) + '+';
+                        requestAnimationFrame(updateCounter);
+                    } else {
+                        el.innerText = target + '+';
+                    }
+                };
+                updateCounter();
+                observer.unobserve(el);
+            }
+        });
+    }, { threshold: 0.5 });
+
+    statElements.forEach(stat => observer.observe(stat));
+}
+
+document.addEventListener('DOMContentLoaded', animateStats);
     </script>
+
 </body>
 </html>
