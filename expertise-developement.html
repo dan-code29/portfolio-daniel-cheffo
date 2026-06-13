@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Expertise en développement – autodidacte passionné par Python, HTML/CSS, Arduino, C, TypeScript. Découvrez mes projets et leur statut.">
+    <meta name="keywords" content="développement, Python, HTML, CSS, Arduino, C, TypeScript, projets, autodidacte">
+    <meta name="theme-color" content="#3498db">
+    <title>Expertise Développement - Neguem Cheffo Daniel</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* Badges de statut */
+        .project-status {
+            display: inline-block;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        .status-completed { background: #10b981; color: white; }
+        .status-inprogress { background: #f59e0b; color: white; }
+        .status-testing { background: #8b5cf6; color: white; }
+        
+        /* Ajustement carrousel pour intégrer le statut */
+        .carousel-project-info {
+            position: relative;
+        }
+        .carousel-project-date {
+            display: inline-block;
+            margin-right: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <button id="dark-mode-toggle" class="theme-btn" aria-label="Changer le thème">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <header>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="expertise-reseaux.html">Réseaux</a></li>
+                <li><a href="expertise-electricite.html">Électricité & Domotique</a></li>
+                <li><a href="expertise-securite.html">Sécurité électronique</a></li>
+            </ul>
+        </nav>
+        <img src="assets/images/ma photo de profil.jpg" alt="Daniel Neguem" class="profile-img" loading="lazy">
+        <h1>Expertise Développement</h1>
+        <p class="tagline">Autodidacte passionné – Python, HTML/CSS, Arduino, C, TypeScript</p>
+    </header>
+
+    <div class="container">
+        <!-- Parcours autodidacte -->
+        <section>
+            <h2>Mon parcours en développement</h2>
+            <div class="about-text">
+                <p>Curieux et autodidacte, j’ai exploré le développement web, embarqué et système. Mon apprentissage s’est construit sur des projets concrets, des tutoriels en ligne et une pratique quotidienne.</p>
+                <div class="stack-container" style="margin-top: 1rem;">
+                    <div class="stack-item"><i class="fab fa-python"></i> Python</div>
+                    <div class="stack-item"><i class="fab fa-html5"></i> HTML5/CSS3</div>
+                    <div class="stack-item"><i class="fab fa-js"></i> JavaScript / TypeScript</div>
+                    <div class="stack-item"><i class="fas fa-microchip"></i> Arduino / C++</div>
+                    <div class="stack-item"><i class="fas fa-code"></i> C (embarqué)</div>
+                </div>
+                <p>Je maîtrise également Git, VS Code et les bases de données (MySQL, MongoDB). Aujourd’hui, je développe des applications web full‑stack et des solutions IoT.</p>
+            </div>
+        </section>
+
+        <!-- Projets réalisés (carrousel) – du plus récent au plus ancien -->
+        <section>
+            <h2>Projets réalisés</h2>
+            <div class="projects-carousel-container">
+                <div class="projects-carousel">
+                    <!-- Projet 1 : 2025 – Dashboard IoT (Terminé) -->
+                    <div class="carousel-project-slide active">
+                        <div class="carousel-project-media">
+                            <img src="assets/images/dashboard-iot.jpg" alt="Dashboard IoT" class="carousel-project-img" loading="lazy">
+                            <video class="carousel-project-video" muted loop preload="none">
+                                <source src="assets/videos/demo-iot.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                        <div class="carousel-project-info">
+                            <span class="project-status status-completed">Terminé</span>
+                            <span class="carousel-project-date">2025</span>
+                            <h4>Dashboard IoT temps réel</h4>
+                            <p>Application web avec WebSockets, chart.js et Node.js pour visualiser des capteurs (Température, humidité).</p>
+                        </div>
+                    </div>
+
+                    <!-- Projet 2 : 2024 – Portfolio personnel (Terminé) -->
+                    <div class="carousel-project-slide">
+                        <div class="carousel-project-media">
+                            <img src="assets/images/portfolio-projet.jpg" alt="Portfolio" class="carousel-project-img" loading="lazy">
+                        </div>
+                        <div class="carousel-project-info">
+                            <span class="project-status status-completed">Terminé</span>
+                            <span class="carousel-project-date">2024</span>
+                            <h4>Portfolio professionnel</h4>
+                            <p>Site responsive avec dark mode, animations et formulaire de contact (HTML/CSS/JS).</p>
+                        </div>
+                    </div>
+
+                    <!-- Projet 3 : 2024 – Station météo Arduino (Terminé) -->
+                    <div class="carousel-project-slide">
+                        <div class="carousel-project-media">
+                            <img src="assets/images/arduino-meteo.jpg" alt="Station météo" class="carousel-project-img" loading="lazy">
+                        </div>
+                        <div class="carousel-project-info">
+                            <span class="project-status status-completed">Terminé</span>
+                            <span class="carousel-project-date">2024</span>
+                            <h4>Station météo Arduino</h4>
+                            <p>Capteur DHT22, affichage LCD, envoi des données vers serveur via ESP8266.</p>
+                        </div>
+                    </div>
+
+                    <!-- Projet 4 : 2023 – Application de gestion de tâches (Phase de test) -->
+                    <div class="carousel-project-slide">
+                        <div class="carousel-project-media">
+                            <img src="assets/images/task-app.jpg" alt="Gestion de tâches" class="carousel-project-img" loading="lazy">
+                        </div>
+                        <div class="carousel-project-info">
+                            <span class="project-status status-testing">Phase de test</span>
+                            <span class="carousel-project-date">2023</span>
+                            <h4>Todo-list full-stack</h4>
+                            <p>React (TypeScript), Node.js, MongoDB – authentification JWT.</p>
+                        </div>
+                    </div>
+
+                    <!-- Projet 5 : 2023 – Système d'alarme domotique (En cours) -->
+                    <div class="carousel-project-slide">
+                        <div class="carousel-project-media">
+                            <img src="assets/images/alarme-domotique.jpg" alt="Alarme domotique" class="carousel-project-img" loading="lazy">
+                        </div>
+                        <div class="carousel-project-info">
+                            <span class="project-status status-inprogress">En cours</span>
+                            <span class="carousel-project-date">2023</span>
+                            <h4>Système d'alarme connectée</h4>
+                            <p>Arduino + capteurs PIR, notification Telegram, interface web de configuration.</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-project-prev" aria-label="Projet précédent">❮</button>
+                <button class="carousel-project-next" aria-label="Projet suivant">❯</button>
+                <div class="carousel-project-indicators"></div>
+            </div>
+        </section>
+
+        <!-- Langages & outils (complément) -->
+        <section>
+            <h2>Technologies & outils</h2>
+            <div class="stack-container">
+                <div class="stack-item"><i class="fab fa-python"></i> Python</div>
+                <div class="stack-item"><i class="fab fa-js"></i> TypeScript</div>
+                <div class="stack-item"><i class="fab fa-react"></i> React</div>
+                <div class="stack-item"><i class="fab fa-node-js"></i> Node.js</div>
+                <div class="stack-item"><i class="fas fa-microchip"></i> Arduino/C++</div>
+                <div class="stack-item"><i class="fas fa-code"></i> C</div>
+                <div class="stack-item"><i class="fab fa-git-alt"></i> Git</div>
+                <div class="stack-item"><i class="fas fa-database"></i> MongoDB</div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Modale (pour l'agrandissement) -->
+    <div id="projectModal" class="modal" aria-hidden="true" role="dialog">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal()">&times;</button>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="contact-info">
+            <p><i class="fas fa-envelope"></i> <a href="mailto:dancheffo29@gmail.com">dancheffo29@gmail.com</a></p>
+            <p><i class="fas fa-phone"></i> <a href="tel:+237697654023">+237 697 654 023</a> | <a href="https://wa.me/237697654023" target="_blank" class="icon-wa"><i class="fab fa-whatsapp"></i> WhatsApp</a></p>
+            <p><a href="https://t.me/+237697654023" target="_blank" class="icon-tg"><i class="fab fa-telegram"></i> Telegram</a> | <a href="https://www.linkedin.com/in/daniel-cheffo-tech" target="_blank" class="icon-li"><i class="fab fa-linkedin"></i> LinkedIn</a></p>
+        </div>
+        <p class="copyright">&copy; 2026 - Neguem Cheffo Daniel</p>
+    </footer>
+
+    <button id="backToTop" title="Retour en haut"><i class="fas fa-arrow-up"></i></button>
+
+    <script src="script.js" defer></script>
+    <script>
+        // Ce script initialise le carrousel (identique à celui des autres pages)
+        (function() {
+            const container = document.querySelector('.projects-carousel-container');
+            if (!container) return;
+
+            const slides = Array.from(container.querySelectorAll('.carousel-project-slide'));
+            const prevBtn = container.querySelector('.carousel-project-prev');
+            const nextBtn = container.querySelector('.carousel-project-next');
+            let indicators = container.querySelectorAll('.carousel-project-indicator');
+            let currentIndex = 0;
+            let autoInterval = null;
+
+            // Création dynamique des indicateurs s'ils n'existent pas
+            if (indicators.length === 0 && slides.length > 1) {
+                const indicatorsDiv = container.querySelector('.carousel-project-indicators') || (() => {
+                    const div = document.createElement('div');
+                    div.className = 'carousel-project-indicators';
+                    container.appendChild(div);
+                    return div;
+                })();
+                for (let i = 0; i < slides.length; i++) {
+                    const dot = document.createElement('span');
+                    dot.classList.add('carousel-project-indicator');
+                    if (i === 0) dot.classList.add('active');
+                    indicatorsDiv.appendChild(dot);
+                }
+                indicators = container.querySelectorAll('.carousel-project-indicator');
+            }
+
+            function showSlide(index) {
+                if (index >= slides.length) currentIndex = 0;
+                else if (index < 0) currentIndex = slides.length - 1;
+                else currentIndex = index;
+
+                slides.forEach((slide, i) => {
+                    slide.classList.toggle('active', i === currentIndex);
+                });
+                indicators.forEach((ind, i) => {
+                    ind.classList.toggle('active', i === currentIndex);
+                });
+            }
+
+            function nextSlide() { showSlide(currentIndex + 1); }
+            function prevSlide() { showSlide(currentIndex - 1); }
+
+            function startAuto() {
+                if (autoInterval) clearInterval(autoInterval);
+                autoInterval = setInterval(nextSlide, 6000);
+            }
+            function stopAuto() { if (autoInterval) clearInterval(autoInterval); }
+
+            if (prevBtn) prevBtn.addEventListener('click', () => { stopAuto(); prevSlide(); startAuto(); });
+            if (nextBtn) nextBtn.addEventListener('click', () => { stopAuto(); nextSlide(); startAuto(); });
+            indicators.forEach((ind, idx) => {
+                ind.addEventListener('click', () => { stopAuto(); showSlide(idx); startAuto(); });
+            });
+            container.addEventListener('mouseenter', stopAuto);
+            container.addEventListener('mouseleave', startAuto);
+
+            // Lecture vidéo au survol (si présente)
+            slides.forEach(slide => {
+                const video = slide.querySelector('.carousel-project-video');
+                if (video) {
+                    slide.addEventListener('mouseenter', () => {
+                        video.load();
+                        video.play().catch(() => {});
+                    });
+                    slide.addEventListener('mouseleave', () => {
+                        video.pause();
+                        video.currentTime = 0;
+                    });
+                }
+                // Clic sur l'image/vidéo pour agrandir (modale)
+                const media = slide.querySelector('.carousel-project-media');
+                if (media) {
+                    media.style.cursor = 'pointer';
+                    media.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        const img = slide.querySelector('.carousel-project-img');
+                        const videoEl = slide.querySelector('.carousel-project-video');
+                        const title = slide.querySelector('h4')?.innerText || 'Projet';
+                        const date = slide.querySelector('.carousel-project-date')?.innerText || '';
+                        const desc = slide.querySelector('p')?.innerText || '';
+                        let mediaHTML = '';
+                        if (videoEl && videoEl.src) {
+                            mediaHTML = `<video controls autoplay style="width:100%; max-height:70vh;"><source src="${videoEl.src}" type="video/mp4"></video>`;
+                        } else if (img && img.src) {
+                            mediaHTML = `<img src="${img.src}" style="width:100%; max-height:70vh; object-fit:contain;">`;
+                        }
+                        const modalBody = document.getElementById('modal-body');
+                        if (modalBody) {
+                            modalBody.innerHTML = `
+                                <div style="text-align:center;">
+                                    <h3>${title}</h3>
+                                    <span style="color:var(--accent);">${date}</span>
+                                    <p>${desc}</p>
+                                    <hr>
+                                    ${mediaHTML}
+                                </div>
+                            `;
+                            const modal = document.getElementById('projectModal');
+                            if (modal) modal.style.display = 'flex';
+                            document.body.style.overflow = 'hidden';
+                        }
+                    });
+                }
+            });
+
+            showSlide(0);
+            startAuto();
+        })();
+    </script>
+</body>
+</html>
