@@ -541,13 +541,64 @@
             font-size: 1.2rem;
             z-index: 100;
         }
+
+        .social-links {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+}
+.social-link {
+    color: #cbd5e1;
+    text-decoration: none;
+    transition: 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+.social-link:hover {
+    color: #0ea5e9;
+}
         #backToTop.show { display: flex; }
+
+        .project-links {
+    display: flex;
+    gap: 0.8rem;
+    margin-top: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.project-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.4rem 0.8rem;
+    border-radius: 30px;
+    font-size: 0.75rem;
+    text-decoration: none;
+    transition: 0.2s;
+}
+.github-link {
+    background: #7224e7;
+    color: white;
+}
+.github-link:hover {
+    background: #63a7fa;
+    transform: translateY(none);
+}
+.demo-link {
+    background: #109004;
+    color: white;
+}
+.demo-link:hover {
+    background: #0284c7;
+    transform: translateY(none);
+}
     </style>
 </head>
 <body>
     <div id="particles-js"></div>
-    <button id="language-toggle" class="language-btn"><span id="lang-text">EN</span></button>
-
+    
     <header>
         <nav class="main-nav">
             <ul>
@@ -641,6 +692,9 @@
             <div class="item"><span class="date">2025</span><h4>BTS Informatique Industrielle et Automatisme</h4><p>Institut supérieur Hintel - Yaoundé, Cameroun</p></div>
         </section>
 
+
+
+
         <section id="projects">
             <h2>Projets et Réalisations</h2>
             <p class="section-subtitle">Une sélection de mes réalisations, chacune avec son propre défi et sa propre histoire.</p>
@@ -654,34 +708,81 @@
                 <button class="filter-btn" data-filter="maintenance">Maintenance</button>
             </div>
             <div class="projects-grid">
-                <!-- Projet WorldSkills -->
-                <div class="project-card" data-project-id="worldskills2024" data-category="reseau" style="background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('assets/images/reseau.jpg'); background-size: cover;">
-                    <div class="project-status status-completed">Terminé</div>
-                    <h3 class="project-year">2024</h3>
-                    <h4>WorldSkills – Câblage Très Haut Débit</h4>
-                    <p>Participation aux WorldSkills dans la spécialité câblage très haut débit. Médaille d'Or au niveau régional.</p>
-                    <div class="project-tags"><span>WorldSkills</span><span>THD</span><span>Câblage</span></div>
-                    <button class="btn-more view-project" data-project="worldskills2024">Voir le projet</button>
+                <!-- Projet electricité stephanopark -->
+                <div class="project-card" data-project-id="electricité2026" data-category="electricite domotique" style="background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('assets/images/projets et realisations/electricité/ELECT11PLAN.jpg'); background-size: cover;">
+                    <div class="project-status status-inprogress">En cours</div>
+                    <h3 class="project-year">2026</h3>
+                    <h4>électricité – stephanopark Unit 11,12,13</h4>
+                    <p>Installation electrique des unités 11,12,13. stephanopark South Africa</p>
+                    <div class="project-tags"><span>Installation électrique</span><span>Normes</span><span>Câblage</span><span>Mise en service</span><span>Sécurité</span></div>
+                    <button class="btn-more view-project" data-project="electricité2026">Voir le projet</button>
                 </div>
-                <!-- Projet Installation caméra -->
-                <div class="project-card" data-project-id="camera2024" data-category="reseau securite maintenance" style="background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('assets/images/camera-bg.jpg'); background-size: cover;">
-                    <div class="project-status status-completed">Terminé</div>
-                    <h3 class="project-year">2024</h3>
-                    <h4>Installation caméra de surveillance</h4>
-                    <p>Déploiement d'un système de vidéosurveillance professionnel avec caméras IP Dahua.</p>
-                    <div class="project-tags"><span>Dahua</span><span>DVR</span><span>Caméra</span></div>
-                    <button class="btn-more view-project" data-project="camera2024">Voir le projet</button>
+
+                
+                <!-- Projet Installation caméra chantier la voirie 2026  -->
+                <div class="project-card" data-project-id="camera2026" data-category="reseau securite " style="background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('assets/images/projets et realisations/sec electronique/vs voirie00.jpg'); background-size: cover;">
+                    <div class="project-status status-inprogress">En cours</div>
+                    <h3 class="project-year">Janvier 2026</h3>
+                    <h4>Installation d’un système de vidéosurveillance IP – 16 caméras, NVR, double écran et accès mobile</h4>
+                    <p>.</p>
+                    <div class="project-tags"><span>Dahua</span><span>DVR</span><span>Caméra</span><span>Vidéosurveillance IP</span><span>NVR</span><span>Accès mobile</span><span></span></div>
+                    <button class="btn-more view-project" data-project="camera2026">Voir le projet</button>
                 </div>
-                <!-- Projet IoT -->
-                <div class="project-card" data-project-id="iot2023" data-category="dev" style="background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('assets/images/iot-bg.jpg'); background-size: cover;">
+
+
+                <!-- Projet IoT  Smart control-->
+                <div class="project-card" data-project-id="iot2026" data-category="dev securite domotique" style="background-image: linear-gradient(rgba(0,0,0,0.7), rgba(203, 184, 184, 0.7)), url('assets/images/projets et realisations/developpement/smartcontrol0.jpg'); background-size: cover;">
+                    <div class="project-status status-inprogress">En cours</div>
+                    <h3 class="project-year">2026</h3>
+                    <h4>Smart Control – Système domotique ouvert (IoT) pour la gestion centralisée
+                    </h4>
+                    <p>.</p>
+                    <div class="project-tags"><span>Flutter</span><span>Dart</span><span>MQTT</span><span>IOT</span></div>
+                    <button class="btn-more view-project" data-project="iot2026">Voir le projet</button>
+                   <div class="project-links">
+                      <a href="https://github.com/dan-code29/smart_control" target="_blank" class="project-link github-link">
+                        <i class="fab fa-github"></i> Code source (github)
+                      </a>
+                      <a href="https://votre-demo-smart-control.web.app" target="_blank" class="project-link demo-link">
+                        <i class="fas fa-mobile-alt"></i> App demo / Site
+                      </a>
+                    </div>
+                </div>
+
+
+                   <!-- Projet dev  porfolio-->
+                <div class="project-card" data-project-id="porfolio2026" data-category="dev " style="background-image: linear-gradient(rgba(0,0,0,0.7), rgba(249, 242, 242, 0.7)), url('assets/images/projets et realisations/developpement/PORTFOLIO.png'); background-size: cover;">
                     <div class="project-status status-testing">Phase de test</div>
-                    <h3 class="project-year">2023</h3>
-                    <h4>Application de gestion IoT</h4>
-                    <p>Interface web pour piloter des capteurs Arduino via MQTT.</p>
-                    <div class="project-tags"><span>React</span><span>Node.js</span><span>MQTT</span></div>
-                    <button class="btn-more view-project" data-project="iot2023">Voir le projet</button>
+                    <h3 class="project-year">2026</h3>
+                    <h4>Conception et développement d’un portfolio moderne entièrement responsive.
+                    </h4>
+                    <p>HTML/CSS/JS, animations, responsive.</p>
+                    <div class="project-tags"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>Responsive</span></div>
+                    <button class="btn-more view-project" data-project="porfolio2026">Voir le projet</button>
+                   <div class="project-links">
+                      <a href="https://github.com/dan-code29/portfolio-daniel-cheffo" target="_blank" class="project-link github-link">
+                        <i class="fab fa-github"></i> Code source (github)
+                      </a>
+                      <a href="https://dan-code29.github.io/portfolio-daniel-cheffo/" target="_blank" class="project-link demo-link">
+                        <i class="fas fa-mobile-alt"></i> app test / Site
+                      </a>
+                    </div>
                 </div>
-                <!-- Projet Domotique -->
+
+                <!-- Projet : Vidéosurveillance PME 2025 -->
+                <div class="project-card" data-project-id="videosurveillance2025" data-category="reseau securite " style="background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('assets/images/camera-bg.jpg'); background-size: cover;">
+                    <div class="project-status status-completed">Terminé</div>
+                        <h3 class="project-year">2025</h3>
+                        <h4>Vidéosurveillance pour petites ,moyenne entreprises et particuliers 2025</h4>
+                        <p>Regroupement de plusieurs déploiements de sécurité en 2025 4,8,16ch NVR,XVR écrans, accès mobile.</p>
+                    <div class="project-tags"> <span>Vidéosurveillance</span><span> caméras</span><span>DVR XVR</span> <span>Accès distant</span><span>PME</span> 
+                    </div>
+                <button class="btn-more view-project" data-project="videosurveillance2025">Voir le projet</button>
+                </div>
+             
+
+
+                  <!-- Projet Domotique -->
                 <div class="project-card" data-project-id="domotique2025" data-category="domotique electricite" style="background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('assets/images/domotique-bg.jpg'); background-size: cover;">
                     <div class="project-status status-inprogress">En cours</div>
                     <h3 class="project-year">2025</h3>
@@ -716,6 +817,14 @@
             <p><i class="fas fa-envelope"></i> <a href="mailto:dancheffo29@gmail.com">dancheffo29@gmail.com</a></p>
             <p><i class="fas fa-phone"></i> <a href="tel:+237697654023">+237 697 654 023</a> | <a href="https://wa.me/237697654023" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a> | <a href="https://t.me/+237697654023" target="_blank"><i class="fab fa-telegram"></i> Telegram</a> | <a href="https://www.linkedin.com/in/daniel-cheffo-tech" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a></p>
         </div>
+        <div class="social-links">
+    <a href="https://github.com/votre-username" target="_blank" class="social-link">
+        <i class="fab fa-github"></i> GitHub
+    </a>
+    <a href="https://votre-site-personnel.com" target="_blank" class="social-link">
+        <i class="fas fa-globe"></i> Mon site
+    </a>
+</div>
         <p class="copyright">&copy; 2026 - Neguem Cheffo Daniel</p>
     </footer>
     <button id="backToTop"><i class="fas fa-arrow-up"></i></button>
@@ -744,27 +853,47 @@
             "retina_detect": true
         });
 
+       
+       
+       
         // ---------- DONNÉES PROJETS POUR LA MODALE DÉTAILLÉE ----------
         const projectsDetails = {
-            worldskills2024: {
-                title: "WorldSkills – Câblage Très Haut Débit",
-                descriptionLong: "Préparation intensive pendant 6 mois, épreuves chronométrées de câblage cuivre et fibre optique, respect des normes ANSI/TIA. Médaille d'Or au niveau régional.",
+            electricité2026: {
+                title: "Projet complet d'installation électrique – Unités 11, 12 & 13 : schémas, câblage et mise en service ",
+                descriptionLong: "Réalisation d’un projet électrique complet couvrant l’étude des schémas, le câblage et le raccordement des équipements , ainsi que la vérification et la mise en service . Respect des normes électriques.",
                 media: [
-                    { type: "image", url: "assets/images/ws-preparation.jpg", caption: "Entraînement en atelier" },
-                    { type: "image", url: "assets/images/ws-competition.jpg", caption: "Jour de l'épreuve" },
-                    { type: "video", url: "assets/videos/ws-podium.mp4", caption: "Remise de la médaille" }
+                    { type: "image", url: "assets/images/projets et realisations/electricité/ELECT11PLAN.jpg", caption: "Plan de l'installation" },
+                    { type: "image", url: "assets/images/electricite-cablage.jpg", caption: "Câblage en cours" },
+                    { type: "video", url: "assets/videos/electricite-mise-en-service.mp4", caption: "Mise en service" }
                 ]
             },
-            camera2024: {
+
+
+            camera2026: {
                 title: "Installation caméra de surveillance",
-                descriptionLong: "Étude terrain, pose de 20 caméras IP, configuration NVR, accès distant sécurisé. Respect des normes de sécurité.",
+                descriptionLong: "Installation d’un système de vidéosurveillance IP – 16 caméras, NVR, double écran et accès mobile",
                 media: [
-                    { type: "image", url: "assets/images/cam-plan.jpg", caption: "Plan de positionnement" },
-                    { type: "image", url: "assets/images/cam-install.jpg", caption: "Installation en hauteur" },
-                    { type: "image", url: "assets/images/cam-interface.jpg", caption: "Interface de supervision" }
+                    { type: "image", url: "assets/images/projets et realisations/sec electronique/vs voirie00.jpg", caption: "Plan d installation" },
+                    { type: "image", url: "assets/images/projets et realisations/sec electronique/vs voirie1.jpg", caption: "Plan d installation" },
+                    { type: "image", url: "assets/images/projets et realisations/sec electronique/vs voirie2.jpg", caption: "Plan d installation" },
+                    { type: "image", url: "assets/images/projets et realisations/sec electronique/vs voirie3.jpg", caption: "Plan d installation" },
+                    { type: "image", url: "assets/images/projets et realisations/sec electronique/vs voirie4.jpg", caption: "Plan d installation" },
+                    { type: "image", url: "assets/images/projets et realisations/sec electronique/vs voirie5.jpg", caption: "Plan d installation" },
+                    { type: "image", url: "assets/images/projets et realisations/sec electronique/vs voirie6.jpg", caption: "Plan d installation" },
+                    { type: "image", url: "assets/images/projets et realisations/sec electronique/vs voirie7.jpg", caption: "Plan d installation" },
+                    { type: "image", url: "assets/images/projets et realisations/sec electronique/vs voirie8.jpg", caption: "Plan d installation" },
+                    { type: "image", url: "assets/images/projets et realisations/sec electronique/vs voirie9.jpg", caption: "Plan d installation" },
+                    { type: "image", url: "assets/images/projets et realisations/sec electronique/vs voirie10.jpg", caption: "Plan d installation" },
+                    { type: "image", url: "assets/images/projets et realisations/sec electronique/vs voirie11.jpg", caption: "Plan d installation" },
+                    { type: "image", url: "assets/images/projets et realisations/sec electronique/vs voirie12.jpg", caption: "Plan d installation" },
+
+                    
+            
                 ]
             },
-            iot2023: {
+
+
+            iot2026: {
                 title: "Application de gestion IoT",
                 descriptionLong: "Développement d'une interface web React pour piloter des capteurs Arduino via MQTT. Prix de l'innovation au concours Tech4Good.",
                 media: [
@@ -772,15 +901,34 @@
                     { type: "image", url: "assets/images/iot-dashboard.jpg", caption: "Dashboard en temps réel" },
                     { type: "video", url: "assets/videos/iot-demo.mp4", caption: "Démonstration" }
                 ]
-            },
-            domotique2025: {
-                title: "Maison connectée (KNX)",
+            },  
+
+            porfolio2026: {
+                title: "Portfolio moderne responsive",
                 descriptionLong: "Intégration de solutions domotiques KNX pour la gestion centralisée de l'éclairage, du chauffage et des volets roulants. Interface tactile et commande vocale.",
                 media: [
                     { type: "image", url: "assets/images/knx-schema.jpg", caption: "Schéma d'installation" },
                     { type: "image", url: "assets/images/knx-interface.jpg", caption: "Interface de contrôle" }
                 ]
             },
+
+            videosurveillance2025: {
+                title: "Installation de vidéosurveillance en 2025",
+                descriptionLong: "En 2025, j’ai réalisé plusieurs installations de vidéosurveillance pour des petites et moyennes structures 4,8,16ch.",
+                media: [
+                    { type: "image", url: "assets/images/projets et realisations/sec electronique/camerarea12.jpg", caption: "installation ip camera" },
+                    { type: "image", url: "assets/images/projets et realisations/sec electronique/cameraRealisation1.jpg", caption: "configuration xvr" },
+                    { type: "image", url: "assets/images/projets et realisations/sec electronique/camrea2.jpg", caption: "test de fonctionnement" },
+                    { type: "image", url: "assets/images/projets et realisations/sec electronique/vs2025.jpg", caption: "configuration xvr switch POE acces distant" },
+                    { type: "image", url: "assets/images/projets et realisations/sec electronique/vs20252.jpg", caption: "configuration et test acces distant" },
+                    { type: "image", url: "assets/images/projets et realisations/sec electronique/reseau realisation 8.jpg", caption: "installation vs 4 ch pour particulier" },
+                    { type: "image", url: "assets/images/projets et realisations/sec electronique/vs20253.jpg", caption: "video surveillance 4ch pour particulier xvr" },
+                    { type: "image", url: "assets/images/projets et realisations/sec electronique/camerarea12.jpg", caption: "Schéma d'installation" },
+
+                ]
+            },
+
+
             maintenance2024: {
                 title: "Maintenance d'infrastructure réseau",
                 descriptionLong: "Audit complet d'une baie de brassage, recâblage Cat6a, certification des liens, documentation technique.",
