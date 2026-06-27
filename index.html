@@ -594,6 +594,235 @@
     background: #0284c7;
     transform: translateY(none);
 }
+
+
+
+
+
+/* ========== TIMELINE / BLOCS ANNÉES ========== */
+.timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    margin-top: 1rem;
+}
+
+.timeline-year {
+    position: relative;
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+}
+
+/* Badge de l'année */
+.year-badge {
+    flex: 0 0 90px;
+    background: rgba(14, 165, 233, 0.15);
+    color: #0ea5e9;
+    font-size: 1.2rem;
+    font-weight: 700;
+    padding: 0.6rem 0.8rem;
+    border-radius: 40px;
+    text-align: center;
+    border: 1px solid rgba(14, 165, 233, 0.3);
+    backdrop-filter: blur(4px);
+    transition: all 0.3s ease;
+    margin-top: 0.5rem;
+}
+
+.timeline-year:hover .year-badge {
+    background: #0ea5e9;
+    color: white;
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(14, 165, 233, 0.4);
+}
+
+/* Bloc de contenu */
+.year-block {
+    flex: 1;
+    background: rgba(20, 30, 45, 0.7);
+    backdrop-filter: blur(6px);
+    border-radius: 24px;
+    padding: 1.5rem 2rem;
+    border: 1px solid rgba(14, 165, 233, 0.2);
+    transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    position: relative;
+    overflow: hidden;
+}
+
+.year-block::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(14, 165, 233, 0.05), transparent 60%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+}
+
+.timeline-year:hover .year-block {
+    transform: translateY(-4px) scale(1.01);
+    border-color: #0ea5e9;
+    box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.6);
+}
+
+.timeline-year:hover .year-block::before {
+    opacity: 1;
+}
+
+/* Contenu du bloc */
+.year-content h3 {
+    font-size: 1.3rem;
+    color: #fbbf24;
+    margin-bottom: 0.3rem;
+}
+
+.year-location {
+    color: #94a3b8;
+    font-size: 0.9rem;
+    margin-bottom: 0.8rem;
+}
+
+.year-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 0.5rem 0;
+}
+
+.year-tags .tag {
+    background: rgba(14, 165, 233, 0.15);
+    color: #0ea5e9;
+    padding: 0.15rem 0.7rem;
+    border-radius: 30px;
+    font-size: 0.7rem;
+    font-weight: 500;
+    border: 1px solid rgba(14, 165, 233, 0.15);
+}
+
+.year-desc {
+    color: #cbd5e1;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-top: 0.5rem;
+}
+
+/* Diplômes */
+.diploma-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin: 0.8rem 0;
+}
+
+.diploma-card {
+    background: rgba(15, 23, 42, 0.6);
+    padding: 0.5rem 1rem;
+    border-radius: 16px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    border: 1px solid rgba(14, 165, 233, 0.15);
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.25s ease;
+    cursor: pointer;
+}
+
+.diploma-card:hover {
+    background: rgba(14, 165, 233, 0.15);
+    border-color: #0ea5e9;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px -8px rgba(14, 165, 233, 0.3);
+}
+
+.diploma-card .diploma-arrow {
+    opacity: 0;
+    transform: translateX(-5px);
+    transition: all 0.25s ease;
+    color: #0ea5e9;
+    font-size: 0.8rem;
+}
+
+.diploma-card:hover .diploma-arrow {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Couleurs personnalisées des diplômes */
+.card-management { color: #fbbf24; }
+.card-management i { color: #fbbf24; }
+
+.card-bible { color: #a78bfa; }
+.card-bible i { color: #a78bfa; }
+
+.card-work { color: #34d399; }
+.card-work i { color: #34d399; }
+
+.card-loisir { color: #f472b6; }
+.card-loisir i { color: #f472b6; }
+
+/* Badges */
+.diploma-badge {
+    font-size: 0.6rem;
+    padding: 0.1rem 0.6rem;
+    border-radius: 30px;
+    background: #10b981;
+    color: white;
+    font-weight: bold;
+}
+
+/* Bloc cliquable (pour 2025 et 2024-2025) */
+.year-block-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    flex: 1;
+    transition: transform 0.3s ease;
+}
+
+.year-block-link:hover .year-block {
+    transform: translateY(-4px) scale(1.01);
+    border-color: #0ea5e9;
+    box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.6);
+}
+
+/* Ligne de connexion verticale entre les années (optionnel) */
+.timeline-year:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: 44px;
+    top: 70px;
+    bottom: -20px;
+    width: 2px;
+    background: linear-gradient(to bottom, rgba(14, 165, 233, 0.3), transparent);
+}
+
+/* Responsive mobile */
+@media (max-width: 768px) {
+    .timeline-year {
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+    .year-badge {
+        flex: none;
+        width: fit-content;
+        padding: 0.3rem 1.2rem;
+        font-size: 1rem;
+    }
+    .timeline-year:not(:last-child)::after {
+        display: none;
+    }
+    .year-block {
+        padding: 1.2rem;
+    }
+}
+   
+ 
     </style>
 </head>
 <body>
@@ -678,20 +907,99 @@
             </div>
         </section>
 
-        <section>
-            <h2>Formations Diplomes & Experiences</h2>
-            <div class="item"><span class="date">2026</span><h4>Programme CYDEP - SCC Stephanopark</h4>
-                <div class="diploma-grid">
-                    <a href="vut-details.html" class="diploma-card"><i class="fas fa-university"></i>Management (VUT)</a>
-                    <a href="bible-details.html" class="diploma-card"><i class="fas fa-bible"></i>Études Bibliques</a>
-                    <a href="slabvest-details.html" class="diploma-card"><i class="fas fa-tools"></i>Work</a>
-                    <a href="loisir-details.html" class="diploma-card"><i class="fas fa-tools"></i>Activités/Loisir/divertissement</a>
+      <section id="formations">
+    <h2>Formations, Diplômes &amp; Expériences</h2>
+    <div class="timeline">
+        <!-- ============ ANNÉE 2026 ============ -->
+        <div class="timeline-year">
+            <div class="year-badge">2026</div>
+            <div class="year-block">
+                <div class="year-content">
+                    <h3>Programme CYDEP – SCC Stephanopark</h3>
+                    <p class="year-location"><i class="fas fa-map-pin"></i> Afrique du Sud</p>
+                    <div class="diploma-grid">
+                        <!-- Management (VUT) - Couleur Or -->
+                        <a href="vut-details.html" class="diploma-card card-management">
+                            <i class="fas fa-university"></i> Management (VUT)
+                            <span class="diploma-badge">✅ Obtenu</span>
+                            <span class="diploma-arrow"><i class="fas fa-arrow-right"></i></span>
+                        </a>
+                        <!-- Études Bibliques - Couleur Violet -->
+                        <a href="bible-details.html" class="diploma-card card-bible">
+                            <i class="fas fa-bible"></i> Études Bibliques
+                            <span class="diploma-badge">✅ Obtenu</span>
+                            <span class="diploma-arrow"><i class="fas fa-arrow-right"></i></span>
+                        </a>
+                        <!-- Work (Slabvest) - Couleur Vert Émeraude -->
+                        <a href="slabvest-details.html" class="diploma-card card-work">
+                            <i class="fas fa-tools"></i> Work (Slabvest)
+                            <span class="diploma-badge">✅ Obtenu</span>
+                            <span class="diploma-arrow"><i class="fas fa-arrow-right"></i></span>
+                        </a>
+                        <!-- Activités / Loisirs - Couleur Rose -->
+                        <a href="loisir-details.html" class="diploma-card card-loisir">
+                            <i class="fas fa-camera"></i> Activités / Loisirs
+                            <span class="diploma-badge" style="background: #f59e0b;">⏳ En cours</span>
+                            <span class="diploma-arrow"><i class="fas fa-arrow-right"></i></span>
+                        </a>
+                    </div>
+                    <p class="year-desc">
+                        Programme complet incluant management, leadership spirituel, 
+                        travaux pratiques et développement personnel.
+                    </p>
                 </div>
             </div>
-            <div class="item"><span class="date">2024-2025</span><h4>Technicien vidéosurveillance et contrôle d'accès</h4><p>ETS Elec-ADDA - Yaoundé, Cameroun</p></div>
-            <div class="item"><span class="date">2025</span><h4>BTS Informatique Industrielle et Automatisme</h4><p>Institut supérieur Hintel - Yaoundé, Cameroun</p></div>
-        </section>
+        </div>
 
+        <!-- ============ ANNÉE 2025 ============ -->
+        <div class="timeline-year">
+            <div class="year-badge">2025</div>
+            <a href="#projects" class="year-block-link">
+                <div class="year-block">
+                    <div class="year-content">
+                        <h3>BTS Informatique Industrielle et Automatisme</h3>
+                        <p class="year-location"><i class="fas fa-university"></i> Institut supérieur Hintel – Yaoundé, Cameroun</p>
+                        <div class="year-tags">
+                            <span class="tag">Automatisme</span>
+                            <span class="tag">Informatique industrielle</span>
+                            <span class="tag">PLC</span>
+                            <span class="tag">Supervision</span>
+                        </div>
+                        <p class="year-desc">
+                            Formation aux systèmes automatisés, programmation d’automates, 
+                            supervision industrielle et maintenance des équipements.
+                        </p>
+                        <div class="diploma-badge" style="background: #10b981; display: inline-block; margin-top: 0.5rem;">🎓 Diplômé</div>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!-- ============ ANNÉE 2024-2025 ============ -->
+        <div class="timeline-year">
+            <div class="year-badge">2024 – 2025</div>
+            <a href="#projects" class="year-block-link">
+                <div class="year-block">
+                    <div class="year-content">
+                        <h3>Technicien vidéosurveillance et contrôle d'accès</h3>
+                        <p class="year-location"><i class="fas fa-building"></i> ETS Elec-ADDA – Yaoundé, Cameroun</p>
+                        <div class="year-tags">
+                            <span class="tag">Vidéosurveillance IP</span>
+                            <span class="tag">Contrôle d'accès</span>
+                            <span class="tag">Câblage</span>
+                            <span class="tag">Normes</span>
+                        </div>
+                        <p class="year-desc">
+                            Installation et maintenance de systèmes de sécurité électronique. 
+                            Interventions sur site, diagnostic et formation des utilisateurs.
+                        </p>
+                        <div class="diploma-badge" style="background: #0ea5e9; display: inline-block; margin-top: 0.5rem;">💼 Expérience</div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
 
 
 
